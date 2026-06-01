@@ -18,70 +18,66 @@
   --darkest:#070710;
   --surface:#13131C;
   --text:#fff;
-  --text-muted:rgba(255,255,255,0.45);
-  --text-faint:rgba(255,255,255,0.25);
+  --text-muted:rgba(255,255,255,0.5);
+  --text-faint:rgba(255,255,255,0.28);
   --border:rgba(255,255,255,0.06);
   --success:#1D9E75;
   --error:#E24B4A;
   --gold:#F5A623;
+  --radius:16px;
+  --radius-sm:10px;
 }
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:14px 48px;background:rgba(15,15,20,0.9);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border)}
-.nav-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--purple);letter-spacing:-0.5px}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-link{font-size:14px;color:var(--text-muted);text-decoration:none;transition:color 0.2s}
-.nav-link:hover{color:var(--text)}
-.nav-cta{background:var(--purple);color:#fff;border:none;padding:9px 22px;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity 0.2s}
-.nav-cta:hover{opacity:0.88}
+nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:rgba(15,15,20,0.92);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border)}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--purple)}
+.nav-links{display:none}
+.nav-cta{background:var(--purple);color:#fff;border:none;padding:9px 20px;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 48px 80px;text-align:center;position:relative;overflow:hidden;background:var(--dark)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,92,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,92,246,0.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
-.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,246,0.12) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-60%);pointer-events:none}
-.hero-inner{position:relative;z-index:2;max-width:780px}
-.hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(124,92,246,0.1);border:0.5px solid rgba(124,92,246,0.3);border-radius:999px;padding:6px 18px;margin-bottom:32px;animation:fadeUp 0.6s ease both}
-.pill-dot{width:7px;height:7px;border-radius:50%;background:var(--purple)}
-.pill-text{font-size:12px;color:#A78BFA;font-weight:500;letter-spacing:0.3px}
-.hero-h1{font-family:'DM Serif Display',serif;font-size:64px;line-height:1.05;letter-spacing:-1px;margin-bottom:22px;animation:fadeUp 0.6s 0.1s ease both}
+.hero{padding:64px 20px 56px;text-align:center;position:relative;overflow:hidden;background:var(--dark)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,92,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,92,246,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.hero-glow{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,246,0.14) 0%,transparent 70%);top:-60px;left:50%;transform:translateX(-50%);pointer-events:none}
+.hero-inner{position:relative;z-index:2}
+.hero-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(124,92,246,0.1);border:0.5px solid rgba(124,92,246,0.3);border-radius:999px;padding:6px 16px;margin-bottom:24px}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--purple);flex-shrink:0}
+.pill-text{font-size:12px;color:#A78BFA;font-weight:500}
+.hero-h1{font-family:'DM Serif Display',serif;font-size:38px;line-height:1.1;letter-spacing:-0.5px;margin-bottom:18px}
 .hero-h1 em{color:var(--purple);font-style:italic}
-.hero-p{font-size:18px;color:var(--text-muted);line-height:1.7;max-width:520px;margin:0 auto 14px;animation:fadeUp 0.6s 0.2s ease both}
-.hero-p2{font-size:13px;color:var(--text-faint);margin-bottom:40px;letter-spacing:0.3px;animation:fadeUp 0.6s 0.25s ease both}
-.hero-cta-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:16px;animation:fadeUp 0.6s 0.3s ease both}
-.big-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--purple);color:#fff;border:none;padding:16px 40px;border-radius:999px;font-size:16px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform 0.15s,opacity 0.15s}
-.big-cta:hover{transform:scale(1.03);opacity:0.92}
-.big-cta svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
-.cta-sub{font-size:12px;color:var(--text-faint)}
-.trust-row{display:flex;justify-content:center;gap:40px;margin-top:56px;padding-top:40px;border-top:0.5px solid var(--border);animation:fadeUp 0.6s 0.4s ease both}
+.hero-p{font-size:16px;color:var(--text-muted);line-height:1.7;margin-bottom:10px}
+.hero-p2{font-size:12px;color:var(--text-faint);margin-bottom:32px;letter-spacing:0.3px}
+.big-cta{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--purple);color:#fff;border:none;padding:16px 28px;border-radius:999px;font-size:16px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;max-width:320px;margin:0 auto}
+.big-cta svg{width:18px;height:18px;fill:#fff;flex-shrink:0}
+.cta-sub{font-size:12px;color:var(--text-faint);margin-top:10px;text-align:center}
+.trust-row{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px;padding-top:32px;border-top:0.5px solid var(--border)}
 .trust-item{text-align:center}
-.trust-num{font-family:'DM Serif Display',serif;font-size:32px;color:#fff;line-height:1}
+.trust-num{font-family:'DM Serif Display',serif;font-size:28px;color:#fff;line-height:1}
 .trust-num span{color:var(--purple)}
-.trust-label{font-size:11px;color:var(--text-faint);margin-top:4px;letter-spacing:0.3px}
+.trust-label{font-size:11px;color:var(--text-faint);margin-top:3px}
 
-/* PHONES SECTION */
-.phones-section{padding:80px 48px;background:var(--darker);display:flex;justify-content:center;gap:32px;align-items:flex-start}
-.ph{width:240px;background:var(--surface);border-radius:36px;border:0.5px solid var(--purple-border);overflow:hidden;flex-shrink:0;box-shadow:0 0 40px rgba(124,92,246,0.08)}
-.ph.offset{margin-top:40px}
-.ph-notch{height:26px;background:var(--darker);display:flex;align-items:center;justify-content:center}
-.ph-nb{width:44px;height:5px;background:rgba(255,255,255,0.07);border-radius:999px}
-.ph-body{padding:20px 16px 22px}
-.ph-eyebrow{font-size:9px;color:var(--purple);letter-spacing:1.2px;text-transform:uppercase;font-weight:500;text-align:center;margin-bottom:12px}
-.ph-title{font-size:15px;font-weight:500;color:#fff;text-align:center;margin-bottom:16px;line-height:1.4}
-.ph-cam{background:var(--purple-dim);border:1px dashed var(--purple-border);border-radius:16px;padding:28px 12px;text-align:center;margin-bottom:10px}
-.ph-cam-icon{font-size:32px;color:var(--purple);margin-bottom:8px;display:block;line-height:1}
+/* PHONES */
+.phones-section{padding:48px 20px;background:var(--darker);display:flex;flex-direction:column;gap:20px;align-items:center}
+.ph{width:100%;max-width:280px;background:var(--surface);border-radius:28px;border:0.5px solid var(--purple-border);overflow:hidden}
+.ph-notch{height:22px;background:var(--darker);display:flex;align-items:center;justify-content:center}
+.ph-nb{width:40px;height:4px;background:rgba(255,255,255,0.07);border-radius:999px}
+.ph-body{padding:18px 16px 20px}
+.ph-eyebrow{font-size:9px;color:var(--purple);letter-spacing:1px;text-transform:uppercase;font-weight:500;text-align:center;margin-bottom:10px}
+.ph-title{font-size:15px;font-weight:500;color:#fff;text-align:center;margin-bottom:14px;line-height:1.4}
+.ph-cam{background:var(--purple-dim);border:1px dashed var(--purple-border);border-radius:14px;padding:24px 12px;text-align:center;margin-bottom:10px}
+.ph-cam-icon{font-size:28px;color:var(--purple);display:block;margin-bottom:7px;line-height:1}
 .ph-cam-t{font-size:11px;color:var(--text-muted)}
 .ph-cam-sub{font-size:10px;color:rgba(255,255,255,0.25);margin-top:4px}
 .ph-gal{background:transparent;border:0.5px solid var(--purple-border);color:var(--purple);width:100%;padding:9px;border-radius:999px;font-size:11px;text-align:center;font-family:'DM Sans',sans-serif}
 .ph-card-label{font-size:9px;color:var(--purple);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:8px;font-weight:500}
 .ph-card-q{font-size:14px;font-weight:500;color:#fff;margin-bottom:12px;line-height:1.4}
-.ph-step{background:rgba(124,92,246,0.07);border:0.5px solid var(--purple-border);border-radius:12px;padding:12px;margin-bottom:8px}
+.ph-step{background:rgba(124,92,246,0.07);border:0.5px solid var(--purple-border);border-radius:10px;padding:11px;margin-bottom:8px}
 .ph-step-label{font-size:8px;color:var(--purple);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:4px}
 .ph-step-text{font-size:11px;color:var(--text-muted);line-height:1.5}
-.ph-dots{display:flex;gap:5px;justify-content:center;margin-top:12px}
+.ph-dots{display:flex;gap:5px;justify-content:center;margin-top:10px}
 .ph-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.1)}
-.ph-dot.a{background:var(--purple);width:16px;border-radius:999px}
+.ph-dot.a{background:var(--purple);width:14px;border-radius:999px}
 .ph-check-q{font-size:13px;font-weight:500;color:#fff;margin-bottom:12px;line-height:1.4}
 .ph-option{border-radius:10px;padding:10px 12px;margin-bottom:7px;display:flex;align-items:center;gap:8px}
 .ph-option.correct{background:rgba(29,158,117,0.12);border:0.5px solid rgba(29,158,117,0.3)}
@@ -95,20 +91,20 @@ nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between
 .ph-opt-text.c{color:var(--success)}
 
 /* SECTIONS */
-.section{padding:80px 48px}
+.section{padding:64px 20px}
 .section.dark{background:var(--darker)}
 .section.darkest{background:var(--darkest)}
 .section.light{background:var(--surface)}
-.sec-eyebrow{font-size:11px;color:var(--purple);letter-spacing:1.4px;text-transform:uppercase;font-weight:500;text-align:center;margin-bottom:12px}
-.sec-h2{font-family:'DM Serif Display',serif;font-size:42px;text-align:center;line-height:1.15;margin-bottom:12px;letter-spacing:-0.5px}
-.sec-sub{font-size:16px;color:var(--text-muted);text-align:center;line-height:1.7;margin-bottom:52px;max-width:540px;margin-left:auto;margin-right:auto}
+.sec-eyebrow{font-size:11px;color:var(--purple);letter-spacing:1.3px;text-transform:uppercase;font-weight:500;text-align:center;margin-bottom:10px}
+.sec-h2{font-family:'DM Serif Display',serif;font-size:32px;text-align:center;line-height:1.2;margin-bottom:12px;letter-spacing:-0.3px}
+.sec-sub{font-size:15px;color:var(--text-muted);text-align:center;line-height:1.7;margin-bottom:40px}
 
-/* PAIN VS SOLUTION */
-.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:620px;margin:0 auto}
-.pain-card{border-radius:20px;padding:28px}
+/* PAIN */
+.pain-grid{display:flex;flex-direction:column;gap:16px}
+.pain-card{border-radius:var(--radius);padding:24px}
 .pain-card.bad{background:rgba(226,75,74,0.05);border:0.5px solid rgba(226,75,74,0.2)}
 .pain-card.good{background:rgba(124,92,246,0.07);border:0.5px solid rgba(124,92,246,0.25)}
-.pain-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px}
+.pain-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:17px}
 .pain-icon.bad{background:rgba(226,75,74,0.1);color:var(--error)}
 .pain-icon.good{background:var(--purple-dim);color:var(--purple)}
 .pain-title{font-size:15px;font-weight:500;margin-bottom:8px}
@@ -116,105 +112,164 @@ nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between
 .pain-title.good{color:var(--purple)}
 .pain-text{font-size:13px;color:var(--text-muted);line-height:1.7}
 
-/* HOW IT WORKS */
-.steps-wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:0.5px solid rgba(124,92,246,0.15);border-radius:20px;overflow:hidden;max-width:900px;margin:0 auto}
-.step-col{padding:28px 20px;border-right:0.5px solid rgba(124,92,246,0.1);text-align:center}
-.step-col:last-child{border-right:none}
-.step-n{width:36px;height:36px;border-radius:999px;border:0.5px solid rgba(124,92,246,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:14px;font-weight:500;color:var(--purple)}
-.step-t{font-size:14px;font-weight:500;color:#fff;margin-bottom:6px}
-.step-d{font-size:12px;color:var(--text-muted);line-height:1.6}
+/* STEPS */
+.steps-wrap{display:flex;flex-direction:column;gap:0;border:0.5px solid rgba(124,92,246,0.15);border-radius:var(--radius);overflow:hidden}
+.step-col{padding:22px 18px;border-bottom:0.5px solid rgba(124,92,246,0.1);display:flex;align-items:flex-start;gap:16px}
+.step-col:last-child{border-bottom:none}
+.step-n{width:34px;height:34px;border-radius:999px;border:0.5px solid rgba(124,92,246,0.35);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--purple);flex-shrink:0}
+.step-content{}
+.step-t{font-size:14px;font-weight:500;color:#fff;margin-bottom:4px}
+.step-d{font-size:13px;color:var(--text-muted);line-height:1.6}
 
 /* VIDEO */
-.video-outer{max-width:680px;margin:0 auto}
-.video-label-row{display:flex;align-items:center;gap:12px;margin-bottom:20px;justify-content:center}
-.video-label-line{flex:1;height:0.5px;background:var(--purple-border);max-width:120px}
-.video-label-text{font-size:12px;color:var(--text-faint);letter-spacing:0.5px}
-.video-frame{background:var(--surface);border:0.5px solid var(--purple-border);border-radius:20px;overflow:hidden}
-.video-placeholder{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#0D0D18;position:relative}
-.video-play-btn{width:72px;height:72px;border-radius:50%;background:rgba(124,92,246,0.15);border:0.5px solid var(--purple-border);display:flex;align-items:center;justify-content:center;transition:transform 0.2s,background 0.2s;cursor:pointer}
-.video-play-btn:hover{background:rgba(124,92,246,0.25);transform:scale(1.05)}
-.video-play-btn svg{width:28px;height:28px;fill:var(--purple);margin-left:4px}
-.video-main-caption{font-size:15px;font-weight:500;color:#fff}
-.video-sub-caption{font-size:12px;color:var(--text-faint);text-align:center;max-width:300px;line-height:1.5}
+.video-outer{width:100%}
+.video-label-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;justify-content:center}
+.video-label-line{flex:1;height:0.5px;background:var(--purple-border);max-width:80px}
+.video-label-text{font-size:11px;color:var(--text-faint);letter-spacing:0.5px}
+.video-frame{background:var(--surface);border:0.5px solid var(--purple-border);border-radius:var(--radius);overflow:hidden}
+.video-placeholder{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#0D0D18}
+.video-play-btn{width:64px;height:64px;border-radius:50%;background:rgba(124,92,246,0.15);border:0.5px solid var(--purple-border);display:flex;align-items:center;justify-content:center}
+.video-play-btn svg{width:26px;height:26px;fill:var(--purple);margin-left:3px}
+.video-main-caption{font-size:14px;font-weight:500;color:#fff}
+.video-sub-caption{font-size:11px;color:var(--text-faint);text-align:center;max-width:240px;line-height:1.5}
 
 /* FEATURES */
-.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:900px;margin:0 auto}
-.fc{background:var(--surface);border:0.5px solid rgba(124,92,246,0.12);border-radius:18px;padding:24px;transition:border-color 0.2s,transform 0.2s}
-.fc:hover{border-color:rgba(124,92,246,0.3);transform:translateY(-2px)}
-.fc-icon{width:40px;height:40px;background:var(--purple-dim);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px;color:var(--purple)}
-.fc-t{font-size:14px;font-weight:500;margin-bottom:6px}
-.fc-d{font-size:12px;color:var(--text-muted);line-height:1.7}
+.feat-grid{display:flex;flex-direction:column;gap:12px}
+.fc{background:var(--surface);border:0.5px solid rgba(124,92,246,0.12);border-radius:var(--radius);padding:20px}
+.fc-icon{width:36px;height:36px;background:var(--purple-dim);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:18px;color:var(--purple)}
+.fc-t{font-size:14px;font-weight:500;margin-bottom:5px}
+.fc-d{font-size:13px;color:var(--text-muted);line-height:1.65}
 
 /* COMPARE */
-.compare-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:0.5px solid rgba(124,92,246,0.15);border-radius:20px;overflow:hidden;max-width:700px;margin:0 auto}
-.comp-col{padding:24px 20px}
-.comp-col.mid{border-left:0.5px solid rgba(124,92,246,0.15);border-right:0.5px solid rgba(124,92,246,0.15);background:rgba(124,92,246,0.04)}
-.comp-head{font-size:14px;font-weight:500;margin-bottom:4px}
-.comp-sub{font-size:11px;margin-bottom:18px}
-.comp-item{font-size:12px;display:flex;align-items:center;gap:7px;margin-bottom:10px;color:var(--text-muted)}
-.comp-item.yes{color:rgba(255,255,255,0.7)}
+.compare-wrap{display:flex;flex-direction:column;gap:12px}
+.comp-col{background:var(--surface);border:0.5px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:20px}
+.comp-col.mid{border:0.5px solid rgba(124,92,246,0.3);background:rgba(124,92,246,0.05)}
+.comp-head{font-size:15px;font-weight:500;margin-bottom:3px}
+.comp-sub{font-size:12px;margin-bottom:16px}
+.comp-item{font-size:13px;display:flex;align-items:center;gap:7px;margin-bottom:10px;color:rgba(255,255,255,0.65)}
+.comp-item.yes{color:rgba(255,255,255,0.8)}
 .comp-item.yes .ci{color:var(--purple)}
-.comp-item.no{opacity:0.3}
+.comp-item.no{opacity:0.5}
 .comp-item.no .ci{color:var(--error)}
 .ci{font-size:14px;flex-shrink:0}
 
-/* LANGUAGES */
-.langs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:700px;margin:0 auto 0}
-.lang{background:rgba(124,92,246,0.07);border:0.5px solid rgba(124,92,246,0.18);border-radius:999px;font-size:13px;padding:8px 18px;color:rgba(255,255,255,0.6);transition:background 0.2s,color 0.2s}
-.lang:hover{background:rgba(124,92,246,0.14);color:#fff}
+/* LANGS */
+.langs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.lang{background:rgba(124,92,246,0.07);border:0.5px solid rgba(124,92,246,0.18);border-radius:999px;font-size:13px;padding:7px 16px;color:rgba(255,255,255,0.6)}
 
 /* REVIEWS */
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:900px;margin:0 auto}
-.rv{background:rgba(124,92,246,0.05);border:0.5px solid rgba(124,92,246,0.15);border-radius:18px;padding:22px}
-.rv-stars{display:flex;gap:3px;margin-bottom:12px}
-.rv-star{font-size:14px;color:var(--gold)}
-.rv-text{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:14px;font-style:italic}
+.reviews-grid{display:flex;flex-direction:column;gap:12px}
+.rv{background:rgba(124,92,246,0.05);border:0.5px solid rgba(124,92,246,0.15);border-radius:var(--radius);padding:20px}
+.rv-stars{display:flex;gap:2px;margin-bottom:10px}
+.rv-star{font-size:13px;color:var(--gold)}
+.rv-text{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:12px;font-style:italic}
 .rv-author{font-size:11px;color:var(--text-faint)}
 
 /* PRICING */
-.pricing-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:580px;margin:0 auto}
-.pc{background:var(--surface);border:0.5px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px}
+.pricing-wrap{display:flex;flex-direction:column;gap:16px}
+.pc{background:var(--surface);border:0.5px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:28px}
 .pc.pro{border:1.5px solid var(--purple);position:relative}
-.pc-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;font-size:11px;font-weight:500;padding:4px 16px;border-radius:999px;white-space:nowrap}
-.pc-name{font-size:13px;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.3px}
+.pc-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;font-size:11px;font-weight:500;padding:4px 16px;border-radius:999px;white-space:nowrap}
+.pc-name{font-size:13px;color:var(--text-muted);margin-bottom:8px}
 .pc-price-orig{font-size:14px;color:var(--text-faint);text-decoration:line-through;margin-bottom:2px}
 .pc-price{font-family:'DM Serif Display',serif;font-size:48px;color:var(--purple);line-height:1;margin-bottom:2px}
-.pc-period{font-size:12px;color:var(--text-faint);margin-bottom:24px;line-height:1.5}
-.pc-item{font-size:13px;color:var(--text-muted);display:flex;align-items:center;gap:8px;margin-bottom:11px}
-.pc-item .ci{font-size:15px;color:var(--purple)}
-.pc-btn{width:100%;padding:13px;border-radius:999px;font-size:14px;font-weight:500;border:none;cursor:pointer;margin-top:20px;font-family:'DM Sans',sans-serif;transition:opacity 0.2s,transform 0.15s}
-.pc-btn:hover{transform:scale(1.02);opacity:0.9}
+.pc-period{font-size:12px;color:var(--text-faint);margin-bottom:22px;line-height:1.5}
+.pc-item{font-size:13px;color:var(--text-muted);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.pc-item .ci{font-size:14px;color:var(--purple)}
+.pc-btn{width:100%;padding:14px;border-radius:999px;font-size:15px;font-weight:500;border:none;cursor:pointer;margin-top:18px;font-family:'DM Sans',sans-serif}
 .pc-btn-free{background:rgba(255,255,255,0.06);color:var(--text);border:0.5px solid rgba(255,255,255,0.1)}
 .pc-btn-pro{background:var(--purple);color:#fff}
 
 /* BOTTOM CTA */
-.bottom-cta-section{background:var(--dark);padding:100px 48px;text-align:center;position:relative;overflow:hidden}
-.bottom-glow{position:absolute;width:500px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,246,0.1) 0%,transparent 70%);bottom:-100px;left:50%;transform:translateX(-50%);pointer-events:none}
+.bottom-cta-section{background:var(--dark);padding:80px 20px;text-align:center;position:relative;overflow:hidden}
+.bottom-glow{position:absolute;width:400px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,246,0.1) 0%,transparent 70%);bottom:-80px;left:50%;transform:translateX(-50%);pointer-events:none}
 .bottom-inner{position:relative;z-index:2}
-.bottom-h{font-family:'DM Serif Display',serif;font-size:52px;line-height:1.1;letter-spacing:-0.5px;margin-bottom:18px}
+.bottom-h{font-family:'DM Serif Display',serif;font-size:36px;line-height:1.15;letter-spacing:-0.3px;margin-bottom:16px}
 .bottom-h span{color:var(--purple);font-style:italic}
-.bottom-p{font-size:16px;color:var(--text-muted);margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7}
-.bottom-btn{display:inline-flex;align-items:center;gap:10px;background:var(--purple);color:#fff;border:none;padding:18px 44px;border-radius:999px;font-size:17px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform 0.15s,opacity 0.15s}
-.bottom-btn:hover{transform:scale(1.03);opacity:0.9}
-.bottom-btn svg{width:22px;height:22px;fill:#fff;flex-shrink:0}
-.bottom-free{display:block;font-size:12px;color:var(--text-faint);margin-top:12px}
+.bottom-p{font-size:15px;color:var(--text-muted);margin-bottom:36px;line-height:1.7}
+.bottom-btn{display:inline-flex;align-items:center;gap:10px;background:var(--purple);color:#fff;border:none;padding:16px 32px;border-radius:999px;font-size:16px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;max-width:320px;justify-content:center}
+.bottom-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.bottom-free{display:block;font-size:12px;color:var(--text-faint);margin-top:10px}
 
 /* FOOTER */
-footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid var(--border)}
+footer{background:var(--darkest);padding:28px 20px;border-top:0.5px solid var(--border)}
+.footer-inner{display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
 .f-logo{font-family:'DM Serif Display',serif;font-size:18px;color:var(--purple)}
-.f-links{display:flex;gap:24px}
-.f-link{font-size:12px;color:var(--text-faint);text-decoration:none;transition:color 0.2s}
-.f-link:hover{color:var(--text-muted)}
+.f-links{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+.f-link{font-size:12px;color:var(--text-faint);text-decoration:none}
 .f-copy{font-size:11px;color:rgba(255,255,255,0.12)}
 
 /* DIVIDER */
 .divline{border:none;border-top:0.5px solid var(--border)}
 
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+/* ============================================
+   TABLET — 640px+
+   ============================================ */
+@media(min-width:640px){
+  nav{padding:14px 32px}
+  .hero{padding:80px 32px 64px}
+  .hero-h1{font-size:48px}
+  .trust-row{grid-template-columns:repeat(4,1fr)}
+  .phones-section{flex-direction:row;justify-content:center;align-items:flex-start;padding:64px 32px;gap:24px}
+  .ph{max-width:220px}
+  .ph:nth-child(2){margin-top:40px}
+  .section{padding:72px 32px}
+  .sec-h2{font-size:38px}
+  .pain-grid{flex-direction:row}
+  .pain-card{flex:1}
+  .steps-wrap{display:grid;grid-template-columns:repeat(2,1fr)}
+  .step-col{border-right:0.5px solid rgba(124,92,246,0.1);border-bottom:0.5px solid rgba(124,92,246,0.1)}
+  .step-col:nth-child(2){border-right:none}
+  .step-col:nth-child(3){border-bottom:none}
+  .step-col:nth-child(4){border-right:none;border-bottom:none}
+  .feat-grid{display:grid;grid-template-columns:repeat(2,1fr)}
+  .compare-wrap{flex-direction:row}
+  .comp-col{flex:1}
+  .reviews-grid{display:grid;grid-template-columns:repeat(2,1fr)}
+  .pricing-wrap{flex-direction:row}
+  .pc{flex:1}
+  .bottom-h{font-size:44px}
+  .footer-inner{flex-direction:row;justify-content:space-between;text-align:left}
+}
 
-/* ICONS inline SVG helpers */
-.icon-play{display:inline-block;width:1em;height:1em;vertical-align:middle}
+/* ============================================
+   DESKTOP — 1024px+
+   ============================================ */
+@media(min-width:1024px){
+  nav{padding:14px 48px}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-link{font-size:14px;color:var(--text-muted);text-decoration:none}
+  .nav-link:hover{color:var(--text)}
+  .hero{padding:100px 48px 80px}
+  .hero-h1{font-size:64px;letter-spacing:-1px}
+  .hero-glow{width:600px;height:600px}
+  .big-cta{width:auto;padding:16px 40px}
+  .trust-row{gap:48px;display:flex;justify-content:center}
+  .trust-item{text-align:center}
+  .trust-num{font-size:32px}
+  .phones-section{gap:32px;padding:80px 48px}
+  .ph{max-width:240px}
+  .section{padding:80px 48px}
+  .sec-h2{font-size:42px}
+  .pain-grid{max-width:640px;margin:0 auto}
+  .steps-wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+  .step-col{flex-direction:column;align-items:flex-start;border-right:0.5px solid rgba(124,92,246,0.1);border-bottom:none;padding:28px 20px}
+  .step-col:last-child{border-right:none}
+  .step-n{margin-bottom:14px}
+  .video-outer{max-width:680px;margin:0 auto}
+  .feat-grid{grid-template-columns:repeat(3,1fr);max-width:900px;margin:0 auto}
+  .fc:hover{transform:translateY(-2px);border-color:rgba(124,92,246,0.3)}
+  .compare-wrap{max-width:700px;margin:0 auto;border:0.5px solid rgba(124,92,246,0.15);border-radius:var(--radius);overflow:hidden;gap:0}
+  .comp-col{background:transparent;border:none;border-radius:0;border-right:0.5px solid rgba(124,92,246,0.15)}
+  .comp-col.mid{background:rgba(124,92,246,0.04);border:none;border-right:0.5px solid rgba(124,92,246,0.15)}
+  .comp-col:last-child{border-right:none}
+  .reviews-grid{grid-template-columns:repeat(3,1fr);max-width:900px;margin:0 auto}
+  .pricing-wrap{max-width:580px;margin:0 auto}
+  .bottom-h{font-size:52px}
+  .bottom-btn{width:auto;padding:18px 44px}
+  footer{padding:28px 48px}
+  .footer-inner{flex-direction:row;justify-content:space-between;text-align:left}
+}
 </style>
 </head>
 <body>
@@ -225,8 +280,8 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
     <a class="nav-link" href="#how">How it works</a>
     <a class="nav-link" href="#features">Features</a>
     <a class="nav-link" href="#pricing">Pricing</a>
-    <button class="nav-cta">Download free</button>
   </div>
+  <button class="nav-cta">Download free</button>
 </nav>
 
 <!-- HERO -->
@@ -238,13 +293,11 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
     <h1 class="hero-h1">Stop copying answers.<br><em>Start understanding them.</em></h1>
     <p class="hero-p">Snap any homework problem and get a real explanation &mdash; not just the answer. Calibrated to your grade. In your language.</p>
     <p class="hero-p2">Math &nbsp;&middot;&nbsp; Science &nbsp;&middot;&nbsp; History &nbsp;&middot;&nbsp; Chemistry &nbsp;&middot;&nbsp; Biology &nbsp;&middot;&nbsp; English &nbsp;&middot;&nbsp; Essays</p>
-    <div class="hero-cta-wrap">
-      <button class="big-cta">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.18 23.76c.28.16.6.24.93.24.4 0 .8-.11 1.15-.32l14.4-8.32c.7-.4 1.12-1.12 1.12-1.92 0-.8-.43-1.52-1.12-1.92L5.26.6C4.91.39 4.51.28 4.11.28c-.33 0-.65.08-.93.24C2.52.96 2.06 1.74 2.06 2.6v18.8c0 .86.46 1.64 1.12 2.36z"/></svg>
-        Download on Google Play
-      </button>
-      <div class="cta-sub">Free forever &nbsp;&middot;&nbsp; No credit card &nbsp;&middot;&nbsp; No sign up</div>
-    </div>
+    <button class="big-cta">
+      <svg viewBox="0 0 24 24"><path d="M3.18 23.76c.28.16.6.24.93.24.4 0 .8-.11 1.15-.32l14.4-8.32c.7-.4 1.12-1.12 1.12-1.92 0-.8-.43-1.52-1.12-1.92L5.26.6C4.91.39 4.51.28 4.11.28c-.33 0-.65.08-.93.24C2.52.96 2.06 1.74 2.06 2.6v18.8c0 .86.46 1.64 1.12 2.36z"/></svg>
+      Download on Google Play
+    </button>
+    <div class="cta-sub">Free forever &nbsp;&middot;&nbsp; No credit card &nbsp;&middot;&nbsp; No sign up</div>
     <div class="trust-row">
       <div class="trust-item"><div class="trust-num">12<span>+</span></div><div class="trust-label">Languages</div></div>
       <div class="trust-item"><div class="trust-num">4</div><div class="trust-label">Grade levels</div></div>
@@ -269,25 +322,23 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
       <div class="ph-gal">Choose from gallery or screenshot</div>
     </div>
   </div>
-  <div class="ph offset">
+  <div class="ph">
     <div class="ph-notch"><div class="ph-nb"></div></div>
     <div class="ph-body">
       <div class="ph-card-label">Step by step</div>
       <div class="ph-card-q">Solving 2x + 6 = 14</div>
       <div class="ph-step">
         <div class="ph-step-label">Step 1</div>
-        <div class="ph-step-text">Subtract 6 from both sides.<br>2x = 8</div>
+        <div class="ph-step-text">Subtract 6 from both sides. 2x = 8</div>
       </div>
       <div class="ph-step">
         <div class="ph-step-label">Step 2</div>
-        <div class="ph-step-text">Divide both sides by 2.<br>x = 4</div>
+        <div class="ph-step-text">Divide both sides by 2. x = 4</div>
       </div>
       <div class="ph-dots">
-        <div class="ph-dot"></div>
-        <div class="ph-dot"></div>
+        <div class="ph-dot"></div><div class="ph-dot"></div>
         <div class="ph-dot a"></div>
-        <div class="ph-dot"></div>
-        <div class="ph-dot"></div>
+        <div class="ph-dot"></div><div class="ph-dot"></div>
       </div>
     </div>
   </div>
@@ -309,9 +360,7 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
         <div class="ph-opt-text">x = 6</div>
       </div>
       <div class="ph-dots">
-        <div class="ph-dot"></div>
-        <div class="ph-dot"></div>
-        <div class="ph-dot"></div>
+        <div class="ph-dot"></div><div class="ph-dot"></div><div class="ph-dot"></div>
         <div class="ph-dot a"></div>
         <div class="ph-dot"></div>
       </div>
@@ -319,10 +368,10 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
   </div>
 </div>
 
-<!-- PAIN VS SOLUTION -->
+<!-- PAIN -->
 <section class="section dark">
   <div class="sec-eyebrow">The problem</div>
-  <h2 class="sec-h2">Getting the answer is not the<br>same as understanding it</h2>
+  <h2 class="sec-h2">Getting the answer is not the same as understanding it</h2>
   <p class="sec-sub">Other apps solve it for you. That works until the exam &mdash; when there&rsquo;s no app allowed.</p>
   <div class="pain-grid">
     <div class="pain-card bad">
@@ -333,7 +382,7 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
     <div class="pain-card good">
       <div class="pain-icon good">&#10003;</div>
       <div class="pain-title good">Explainly</div>
-      <p class="pain-text">Teaches you the concept. Walks through the steps. Tests you before showing the answer. You actually learn.</p>
+      <p class="pain-text">Teaches you the concept. Walks through every step. Tests you before the answer. You actually learn.</p>
     </div>
   </div>
 </section>
@@ -341,28 +390,36 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
 <!-- HOW IT WORKS -->
 <section class="section darkest" id="how">
   <div class="sec-eyebrow">How it works</div>
-  <h2 class="sec-h2">From confused to confident<br>in four steps</h2>
-  <p class="sec-sub" style="margin-bottom:40px">Every explanation follows the same proven learning structure.</p>
+  <h2 class="sec-h2">From confused to confident in four steps</h2>
+  <p class="sec-sub">Every explanation follows the same proven learning structure.</p>
   <div class="steps-wrap">
     <div class="step-col">
       <div class="step-n">1</div>
-      <div class="step-t">Snap it</div>
-      <div class="step-d">Camera, gallery, or screenshot. Any homework problem works.</div>
+      <div class="step-content">
+        <div class="step-t">Snap it</div>
+        <div class="step-d">Camera, gallery, or screenshot. Any homework problem works.</div>
+      </div>
     </div>
     <div class="step-col">
       <div class="step-n">2</div>
-      <div class="step-t">Get taught</div>
-      <div class="step-d">5 cards &mdash; what it&rsquo;s asking, concept, steps, self-check, answer.</div>
+      <div class="step-content">
+        <div class="step-t">Get taught</div>
+        <div class="step-d">5 cards &mdash; concept, context, steps, self-check, answer.</div>
+      </div>
     </div>
     <div class="step-col">
       <div class="step-n">3</div>
-      <div class="step-t">Test yourself</div>
-      <div class="step-d">Answer before the answer is shown. It makes it stick.</div>
+      <div class="step-content">
+        <div class="step-t">Test yourself</div>
+        <div class="step-d">Answer before the answer is shown. Makes it stick.</div>
+      </div>
     </div>
     <div class="step-col">
       <div class="step-n">4</div>
-      <div class="step-t">Practice later</div>
-      <div class="step-d">Save problems. Use Practice Mode to lock in what you learned.</div>
+      <div class="step-content">
+        <div class="step-t">Practice later</div>
+        <div class="step-d">Save problems. Practice Mode locks in what you learned.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -370,7 +427,7 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
 <!-- VIDEO -->
 <section class="section dark">
   <div class="sec-eyebrow">Meet Alex</div>
-  <h2 class="sec-h2">From lost at midnight to<br>confident at exam time</h2>
+  <h2 class="sec-h2">From lost at midnight to confident at exam time</h2>
   <p class="sec-sub">Watch Alex go from stuck on homework at 11pm to acing his test &mdash; and how Explainly made the difference.</p>
   <div class="video-outer">
     <div class="video-label-row">
@@ -393,7 +450,7 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
 <!-- FEATURES -->
 <section class="section" id="features">
   <div class="sec-eyebrow">Features</div>
-  <h2 class="sec-h2">Built for students who actually<br>want to learn</h2>
+  <h2 class="sec-h2">Built for students who actually want to learn</h2>
   <p class="sec-sub">Not just to finish homework.</p>
   <div class="feat-grid">
     <div class="fc">
@@ -414,7 +471,7 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
     <div class="fc">
       <div class="fc-icon">&#129504;</div>
       <div class="fc-t">Practice Mode</div>
-      <p class="fc-d">New problems for math. Flashcards for everything else. Proven spaced repetition science.</p>
+      <p class="fc-d">New problems for math. Flashcards for everything else. Proven spaced repetition.</p>
     </div>
     <div class="fc">
       <div class="fc-icon">&#127760;</div>
@@ -432,12 +489,12 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
 <!-- COMPARE -->
 <section class="section dark">
   <div class="sec-eyebrow">Why Explainly wins</div>
-  <h2 class="sec-h2">Built different from every<br>other homework app</h2>
-  <p class="sec-sub" style="margin-bottom:36px">Other apps give you the answer. Explainly gives you the understanding.</p>
+  <h2 class="sec-h2">Built different from every other homework app</h2>
+  <p class="sec-sub">Other apps give you the answer. Explainly gives you the understanding.</p>
   <div class="compare-wrap">
     <div class="comp-col">
-      <div class="comp-head" style="color:rgba(255,255,255,0.3)">Other apps</div>
-      <div class="comp-sub" style="color:rgba(255,255,255,0.15)">Photomath, Gauth</div>
+      <div class="comp-head" style="color:rgba(255,255,255,0.65)">Other apps</div>
+      <div class="comp-sub" style="color:rgba(255,255,255,0.35)">Photomath, Gauth</div>
       <div class="comp-item no"><span class="ci">&#10005;</span>Just shows the answer</div>
       <div class="comp-item no"><span class="ci">&#10005;</span>Math only or weak multi-subject</div>
       <div class="comp-item no"><span class="ci">&#10005;</span>No grade calibration</div>
@@ -447,7 +504,7 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
     </div>
     <div class="comp-col mid">
       <div class="comp-head" style="color:#A78BFA">Explainly</div>
-      <div class="comp-sub" style="color:rgba(124,92,246,0.5)">The pocket tutor</div>
+      <div class="comp-sub" style="color:rgba(124,92,246,0.6)">The pocket tutor</div>
       <div class="comp-item yes"><span class="ci">&#10003;</span>5-card teaching flow</div>
       <div class="comp-item yes"><span class="ci">&#10003;</span>Every subject</div>
       <div class="comp-item yes"><span class="ci">&#10003;</span>Auto grade detection</div>
@@ -456,13 +513,13 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
       <div class="comp-item yes"><span class="ci">&#10003;</span>12 languages</div>
     </div>
     <div class="comp-col">
-      <div class="comp-head" style="color:rgba(255,255,255,0.2)">A real tutor</div>
-      <div class="comp-sub" style="color:rgba(255,255,255,0.12)">$50&ndash;100/hour</div>
-      <div class="comp-item yes" style="opacity:0.25"><span class="ci">&#10003;</span>Teaches concepts</div>
-      <div class="comp-item yes" style="opacity:0.25"><span class="ci">&#10003;</span>Multi-subject</div>
-      <div class="comp-item yes" style="opacity:0.25"><span class="ci">&#10003;</span>Adjusts to level</div>
-      <div class="comp-item yes" style="opacity:0.25"><span class="ci">&#10003;</span>Essays too</div>
-      <div class="comp-item yes" style="opacity:0.25"><span class="ci">&#10003;</span>Practice drills</div>
+      <div class="comp-head" style="color:rgba(255,255,255,0.65)">A real tutor</div>
+      <div class="comp-sub" style="color:rgba(255,255,255,0.35)">$50&ndash;100/hour</div>
+      <div class="comp-item yes" style="opacity:0.55"><span class="ci">&#10003;</span>Teaches concepts</div>
+      <div class="comp-item yes" style="opacity:0.55"><span class="ci">&#10003;</span>Multi-subject</div>
+      <div class="comp-item yes" style="opacity:0.55"><span class="ci">&#10003;</span>Adjusts to level</div>
+      <div class="comp-item yes" style="opacity:0.55"><span class="ci">&#10003;</span>Essays too</div>
+      <div class="comp-item yes" style="opacity:0.55"><span class="ci">&#10003;</span>Practice drills</div>
       <div class="comp-item no"><span class="ci">&#10005;</span>Not always available</div>
     </div>
   </div>
@@ -472,7 +529,7 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
 <section class="section darkest">
   <div class="sec-eyebrow">Languages</div>
   <h2 class="sec-h2">Your homework. Your language.</h2>
-  <p class="sec-sub">A student in the Philippines studying from an English textbook can get every explanation in Tagalog. Your homework, your language.</p>
+  <p class="sec-sub">A student in the Philippines studying from an English textbook can get every explanation in Tagalog.</p>
   <div class="langs">
     <div class="lang">&#127482;&#127480; English</div>
     <div class="lang">&#127477;&#127469; Tagalog</div>
@@ -516,7 +573,7 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
 <!-- PRICING -->
 <section class="section darkest" id="pricing">
   <div class="sec-eyebrow">Pricing</div>
-  <h2 class="sec-h2">Free to start. Powerful<br>when you go Pro.</h2>
+  <h2 class="sec-h2">Free to start. Powerful when you go Pro.</h2>
   <p class="sec-sub">No credit card. No sign up. Just download and go.</p>
   <div class="pricing-wrap">
     <div class="pc">
@@ -561,13 +618,15 @@ footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:
 </section>
 
 <footer>
-  <div class="f-logo">Explainly</div>
-  <div class="f-links">
-    <a class="f-link" href="https://dbrit702-cmyk.github.io/explainly-legal/privacy-policy">Privacy policy</a>
-    <a class="f-link" href="https://dbrit702-cmyk.github.io/explainly-legal/terms-of-service">Terms of service</a>
-    <a class="f-link" href="mailto:dbrit702@gmail.com">Contact</a>
+  <div class="footer-inner">
+    <div class="f-logo">Explainly</div>
+    <div class="f-links">
+      <a class="f-link" href="https://dbrit702-cmyk.github.io/explainly-legal/privacy-policy">Privacy policy</a>
+      <a class="f-link" href="https://dbrit702-cmyk.github.io/explainly-legal/terms-of-service">Terms of service</a>
+      <a class="f-link" href="mailto:dbrit702@gmail.com">Contact</a>
+    </div>
+    <div class="f-copy">&copy; 2026 Britten Labs</div>
   </div>
-  <div class="f-copy">&copy; 2026 Britten Labs</div>
 </footer>
 
 </body>
