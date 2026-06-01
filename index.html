@@ -1,331 +1,533 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explainly — The Pocket Tutor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-sans)}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:16px 40px;background:#0F0F14;border-bottom:0.5px solid rgba(124,92,246,0.15)}
-.nav-logo{font-size:15px;font-weight:500;color:#7C5CF6;letter-spacing:2px;text-transform:uppercase}
-.nav-cta{background:#7C5CF6;color:#fff;border:none;padding:8px 20px;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer}
-.hero{background:#0F0F14;padding:80px 40px 64px;text-align:center}
-.hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(124,92,246,0.1);border:0.5px solid rgba(124,92,246,0.25);border-radius:999px;padding:6px 16px;margin-bottom:28px}
-.pill-dot{width:7px;height:7px;border-radius:50%;background:#7C5CF6}
-.pill-text{font-size:12px;color:#A78BFA;font-weight:500}
-.hero-h1{font-size:54px;font-weight:500;color:#fff;line-height:1.1;letter-spacing:-0.5px;margin-bottom:20px}
-.hero-h1 span{color:#7C5CF6}
-.hero-p{font-size:17px;color:rgba(255,255,255,0.5);line-height:1.7;max-width:500px;margin:0 auto 16px}
-.hero-p2{font-size:14px;color:rgba(255,255,255,0.3);margin-bottom:36px}
-.hero-cta-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:16px}
-.big-cta{display:flex;align-items:center;justify-content:center;gap:10px;background:#7C5CF6;color:#fff;border:none;padding:16px 36px;border-radius:999px;font-size:16px;font-weight:500;cursor:pointer;width:280px}
-.big-cta i{font-size:20px}
-.cta-sub{font-size:12px;color:rgba(255,255,255,0.3)}
-.trust-row{display:flex;justify-content:center;gap:24px;margin-top:40px;padding-top:40px;border-top:0.5px solid rgba(255,255,255,0.06)}
+:root{
+  --purple:#7C5CF6;
+  --purple-dim:rgba(124,92,246,0.1);
+  --purple-border:rgba(124,92,246,0.25);
+  --dark:#0F0F14;
+  --darker:#0A0A10;
+  --darkest:#070710;
+  --surface:#13131C;
+  --text:#fff;
+  --text-muted:rgba(255,255,255,0.45);
+  --text-faint:rgba(255,255,255,0.25);
+  --border:rgba(255,255,255,0.06);
+  --success:#1D9E75;
+  --error:#E24B4A;
+  --gold:#F5A623;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:14px 48px;background:rgba(15,15,20,0.9);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border)}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--purple);letter-spacing:-0.5px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-link{font-size:14px;color:var(--text-muted);text-decoration:none;transition:color 0.2s}
+.nav-link:hover{color:var(--text)}
+.nav-cta{background:var(--purple);color:#fff;border:none;padding:9px 22px;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity 0.2s}
+.nav-cta:hover{opacity:0.88}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 48px 80px;text-align:center;position:relative;overflow:hidden;background:var(--dark)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,92,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,92,246,0.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,246,0.12) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-60%);pointer-events:none}
+.hero-inner{position:relative;z-index:2;max-width:780px}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(124,92,246,0.1);border:0.5px solid rgba(124,92,246,0.3);border-radius:999px;padding:6px 18px;margin-bottom:32px;animation:fadeUp 0.6s ease both}
+.pill-dot{width:7px;height:7px;border-radius:50%;background:var(--purple)}
+.pill-text{font-size:12px;color:#A78BFA;font-weight:500;letter-spacing:0.3px}
+.hero-h1{font-family:'DM Serif Display',serif;font-size:64px;line-height:1.05;letter-spacing:-1px;margin-bottom:22px;animation:fadeUp 0.6s 0.1s ease both}
+.hero-h1 em{color:var(--purple);font-style:italic}
+.hero-p{font-size:18px;color:var(--text-muted);line-height:1.7;max-width:520px;margin:0 auto 14px;animation:fadeUp 0.6s 0.2s ease both}
+.hero-p2{font-size:13px;color:var(--text-faint);margin-bottom:40px;letter-spacing:0.3px;animation:fadeUp 0.6s 0.25s ease both}
+.hero-cta-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:16px;animation:fadeUp 0.6s 0.3s ease both}
+.big-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--purple);color:#fff;border:none;padding:16px 40px;border-radius:999px;font-size:16px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform 0.15s,opacity 0.15s}
+.big-cta:hover{transform:scale(1.03);opacity:0.92}
+.big-cta svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.cta-sub{font-size:12px;color:var(--text-faint)}
+.trust-row{display:flex;justify-content:center;gap:40px;margin-top:56px;padding-top:40px;border-top:0.5px solid var(--border);animation:fadeUp 0.6s 0.4s ease both}
 .trust-item{text-align:center}
-.trust-num{font-size:22px;font-weight:500;color:#fff}
-.trust-num span{color:#7C5CF6}
-.trust-label{font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px}
-.phones-hero{display:flex;justify-content:center;gap:12px;margin-top:48px;align-items:flex-start}
-.ph{width:150px;background:#13131C;border-radius:24px;border:0.5px solid rgba(124,92,246,0.25);overflow:hidden}
-.ph-notch{height:20px;background:#0A0A10;display:flex;align-items:center;justify-content:center}
-.ph-nb{width:36px;height:3px;background:rgba(255,255,255,0.08);border-radius:999px}
-.ph-body{padding:12px 10px 14px}
-.ph-label{font-size:8px;color:#7C5CF6;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:6px}
-.ph-title{font-size:11px;font-weight:500;color:#fff;margin-bottom:10px;line-height:1.4}
-.ph-card{background:rgba(124,92,246,0.08);border:0.5px solid rgba(124,92,246,0.2);border-radius:10px;padding:10px;margin-bottom:6px}
-.ph-card-label{font-size:7px;color:#7C5CF6;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:4px}
-.ph-card-text{font-size:9px;color:rgba(255,255,255,0.6);line-height:1.5}
-.ph-dots{display:flex;gap:4px;justify-content:center;margin-top:8px}
-.ph-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.1)}
-.ph-dot.a{background:#7C5CF6;width:12px;border-radius:999px}
-.ph2{margin-top:28px}
-.ph-cam{background:rgba(124,92,246,0.08);border:1px dashed rgba(124,92,246,0.25);border-radius:10px;padding:16px 8px;text-align:center;margin-bottom:6px}
-.ph-cam i{font-size:20px;color:#7C5CF6;display:block;margin-bottom:5px}
-.ph-cam-t{font-size:8px;color:rgba(255,255,255,0.4)}
-.ph-gal{background:transparent;border:0.5px solid rgba(124,92,246,0.25);color:#7C5CF6;width:100%;padding:6px;border-radius:999px;font-size:8px;text-align:center}
-.section{padding:72px 40px;background:var(--color-background-primary)}
-.section.alt{background:var(--color-background-secondary)}
-.section.dark{background:#0A0A10}
-.sec-eyebrow{font-size:11px;color:#7C5CF6;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;text-align:center;margin-bottom:10px}
-.sec-h2{font-size:36px;font-weight:500;text-align:center;line-height:1.2;margin-bottom:10px}
-.sec-h2.light{color:#fff}
-.sec-sub{font-size:15px;color:var(--color-text-secondary);text-align:center;line-height:1.6;margin-bottom:48px}
-.sec-sub.light{color:rgba(255,255,255,0.4)}
-.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:560px;margin:0 auto 0}
-.pain-card{border-radius:var(--border-radius-lg);padding:24px}
-.pain-card.bad{background:rgba(226,75,74,0.06);border:0.5px solid rgba(226,75,74,0.15)}
-.pain-card.good{background:rgba(124,92,246,0.06);border:0.5px solid rgba(124,92,246,0.2)}
-.pain-icon{font-size:20px;margin-bottom:10px}
-.pain-icon.bad{color:#E24B4A}
-.pain-icon.good{color:#7C5CF6}
-.pain-title{font-size:14px;font-weight:500;margin-bottom:6px}
-.pain-title.bad{color:#E24B4A}
-.pain-title.good{color:#7C5CF6}
-.pain-text{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
-.steps-wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:0.5px solid rgba(124,92,246,0.15);border-radius:var(--border-radius-lg);overflow:hidden}
-.step-col{padding:24px 16px;border-right:0.5px solid rgba(124,92,246,0.1);text-align:center}
+.trust-num{font-family:'DM Serif Display',serif;font-size:32px;color:#fff;line-height:1}
+.trust-num span{color:var(--purple)}
+.trust-label{font-size:11px;color:var(--text-faint);margin-top:4px;letter-spacing:0.3px}
+
+/* PHONES SECTION */
+.phones-section{padding:80px 48px;background:var(--darker);display:flex;justify-content:center;gap:32px;align-items:flex-start}
+.ph{width:240px;background:var(--surface);border-radius:36px;border:0.5px solid var(--purple-border);overflow:hidden;flex-shrink:0;box-shadow:0 0 40px rgba(124,92,246,0.08)}
+.ph.offset{margin-top:40px}
+.ph-notch{height:26px;background:var(--darker);display:flex;align-items:center;justify-content:center}
+.ph-nb{width:44px;height:5px;background:rgba(255,255,255,0.07);border-radius:999px}
+.ph-body{padding:20px 16px 22px}
+.ph-eyebrow{font-size:9px;color:var(--purple);letter-spacing:1.2px;text-transform:uppercase;font-weight:500;text-align:center;margin-bottom:12px}
+.ph-title{font-size:15px;font-weight:500;color:#fff;text-align:center;margin-bottom:16px;line-height:1.4}
+.ph-cam{background:var(--purple-dim);border:1px dashed var(--purple-border);border-radius:16px;padding:28px 12px;text-align:center;margin-bottom:10px}
+.ph-cam-icon{font-size:32px;color:var(--purple);margin-bottom:8px;display:block;line-height:1}
+.ph-cam-t{font-size:11px;color:var(--text-muted)}
+.ph-cam-sub{font-size:10px;color:rgba(255,255,255,0.25);margin-top:4px}
+.ph-gal{background:transparent;border:0.5px solid var(--purple-border);color:var(--purple);width:100%;padding:9px;border-radius:999px;font-size:11px;text-align:center;font-family:'DM Sans',sans-serif}
+.ph-card-label{font-size:9px;color:var(--purple);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:8px;font-weight:500}
+.ph-card-q{font-size:14px;font-weight:500;color:#fff;margin-bottom:12px;line-height:1.4}
+.ph-step{background:rgba(124,92,246,0.07);border:0.5px solid var(--purple-border);border-radius:12px;padding:12px;margin-bottom:8px}
+.ph-step-label{font-size:8px;color:var(--purple);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:4px}
+.ph-step-text{font-size:11px;color:var(--text-muted);line-height:1.5}
+.ph-dots{display:flex;gap:5px;justify-content:center;margin-top:12px}
+.ph-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.1)}
+.ph-dot.a{background:var(--purple);width:16px;border-radius:999px}
+.ph-check-q{font-size:13px;font-weight:500;color:#fff;margin-bottom:12px;line-height:1.4}
+.ph-option{border-radius:10px;padding:10px 12px;margin-bottom:7px;display:flex;align-items:center;gap:8px}
+.ph-option.correct{background:rgba(29,158,117,0.12);border:0.5px solid rgba(29,158,117,0.3)}
+.ph-option.wrong{background:rgba(226,75,74,0.08);border:0.5px solid rgba(226,75,74,0.15)}
+.ph-option.neutral{background:var(--purple-dim);border:0.5px solid var(--purple-border)}
+.ph-opt-letter{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;flex-shrink:0}
+.ph-opt-letter.c{background:var(--success);color:#fff}
+.ph-opt-letter.w{background:var(--error);color:#fff}
+.ph-opt-letter.n{background:var(--purple-dim);color:var(--purple)}
+.ph-opt-text{font-size:10px;color:var(--text-muted)}
+.ph-opt-text.c{color:var(--success)}
+
+/* SECTIONS */
+.section{padding:80px 48px}
+.section.dark{background:var(--darker)}
+.section.darkest{background:var(--darkest)}
+.section.light{background:var(--surface)}
+.sec-eyebrow{font-size:11px;color:var(--purple);letter-spacing:1.4px;text-transform:uppercase;font-weight:500;text-align:center;margin-bottom:12px}
+.sec-h2{font-family:'DM Serif Display',serif;font-size:42px;text-align:center;line-height:1.15;margin-bottom:12px;letter-spacing:-0.5px}
+.sec-sub{font-size:16px;color:var(--text-muted);text-align:center;line-height:1.7;margin-bottom:52px;max-width:540px;margin-left:auto;margin-right:auto}
+
+/* PAIN VS SOLUTION */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:620px;margin:0 auto}
+.pain-card{border-radius:20px;padding:28px}
+.pain-card.bad{background:rgba(226,75,74,0.05);border:0.5px solid rgba(226,75,74,0.2)}
+.pain-card.good{background:rgba(124,92,246,0.07);border:0.5px solid rgba(124,92,246,0.25)}
+.pain-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px}
+.pain-icon.bad{background:rgba(226,75,74,0.1);color:var(--error)}
+.pain-icon.good{background:var(--purple-dim);color:var(--purple)}
+.pain-title{font-size:15px;font-weight:500;margin-bottom:8px}
+.pain-title.bad{color:var(--error)}
+.pain-title.good{color:var(--purple)}
+.pain-text{font-size:13px;color:var(--text-muted);line-height:1.7}
+
+/* HOW IT WORKS */
+.steps-wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:0.5px solid rgba(124,92,246,0.15);border-radius:20px;overflow:hidden;max-width:900px;margin:0 auto}
+.step-col{padding:28px 20px;border-right:0.5px solid rgba(124,92,246,0.1);text-align:center}
 .step-col:last-child{border-right:none}
-.step-n{width:32px;height:32px;border-radius:999px;border:0.5px solid rgba(124,92,246,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:13px;font-weight:500;color:#7C5CF6}
-.step-t{font-size:13px;font-weight:500;color:#fff;margin-bottom:5px}
-.step-d{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.5}
-.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.fc{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:20px}
-.fc-icon{width:36px;height:36px;background:rgba(124,92,246,0.1);border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
-.fc-icon i{font-size:17px;color:#7C5CF6}
-.fc-t{font-size:13px;font-weight:500;margin-bottom:5px}
-.fc-d{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.rv{background:rgba(124,92,246,0.06);border:0.5px solid rgba(124,92,246,0.15);border-radius:var(--border-radius-lg);padding:20px}
-.rv-stars{display:flex;gap:2px;margin-bottom:10px}
-.rv-star{font-size:13px;color:#F5A623}
-.rv-text{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:12px;font-style:italic}
-.rv-author{font-size:11px;color:rgba(255,255,255,0.3)}
-.video-wrap{background:#13131C;border:0.5px solid rgba(124,92,246,0.2);border-radius:var(--border-radius-lg);overflow:hidden;max-width:560px;margin:0 auto}
-.video-placeholder{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#0D0D18}
-.video-play{width:60px;height:60px;border-radius:50%;background:rgba(124,92,246,0.15);border:0.5px solid rgba(124,92,246,0.3);display:flex;align-items:center;justify-content:center}
-.video-play i{font-size:24px;color:#7C5CF6}
-.video-caption{font-size:12px;color:rgba(255,255,255,0.3)}
-.pricing-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:520px;margin:0 auto}
-.pc{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:28px}
-.pc.pro{border:1.5px solid #7C5CF6;position:relative}
-.pc-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#7C5CF6;color:#fff;font-size:10px;font-weight:500;padding:3px 14px;border-radius:999px;white-space:nowrap}
-.pc-name{font-size:14px;font-weight:500;margin-bottom:6px;color:var(--color-text-secondary)}
-.pc-price{font-size:40px;font-weight:500;color:#7C5CF6;line-height:1;margin-bottom:2px}
-.pc-price-orig{font-size:14px;color:var(--color-text-secondary);text-decoration:line-through;margin-bottom:2px}
-.pc-period{font-size:11px;color:var(--color-text-secondary);margin-bottom:20px}
-.pc-item{font-size:12px;color:var(--color-text-secondary);display:flex;align-items:center;gap:7px;margin-bottom:9px}
-.pc-item i{font-size:13px;color:#7C5CF6}
-.pc-btn{width:100%;padding:11px;border-radius:999px;font-size:14px;font-weight:500;border:none;cursor:pointer;margin-top:16px}
-.pc-btn-free{background:var(--color-background-secondary);color:var(--color-text-primary);border:0.5px solid var(--color-border-tertiary)}
-.pc-btn-pro{background:#7C5CF6;color:#fff}
-.bottom-cta{background:#0F0F14;padding:80px 40px;text-align:center}
-.bottom-h{font-size:38px;font-weight:500;color:#fff;line-height:1.2;margin-bottom:16px}
-.bottom-h span{color:#7C5CF6}
-.bottom-p{font-size:15px;color:rgba(255,255,255,0.4);margin-bottom:36px;max-width:440px;margin-left:auto;margin-right:auto}
-.bottom-cta-btn{display:inline-flex;align-items:center;gap:10px;background:#7C5CF6;color:#fff;border:none;padding:16px 40px;border-radius:999px;font-size:16px;font-weight:500;cursor:pointer}
-.bottom-free{display:block;font-size:12px;color:rgba(255,255,255,0.3);margin-top:10px}
-.langs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:48px}
-.lang{background:rgba(124,92,246,0.08);border:0.5px solid rgba(124,92,246,0.18);border-radius:999px;font-size:12px;padding:6px 16px;color:rgba(255,255,255,0.55)}
-.footer{background:#070710;padding:24px 40px;display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid rgba(124,92,246,0.08)}
-.f-logo{font-size:13px;font-weight:500;color:#7C5CF6;letter-spacing:2px;text-transform:uppercase}
-.f-links{display:flex;gap:20px}
-.f-link{font-size:12px;color:rgba(255,255,255,0.25);text-decoration:none}
-.f-copy{font-size:11px;color:rgba(255,255,255,0.15)}
-.divline{border:none;border-top:0.5px solid var(--color-border-tertiary)}
+.step-n{width:36px;height:36px;border-radius:999px;border:0.5px solid rgba(124,92,246,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:14px;font-weight:500;color:var(--purple)}
+.step-t{font-size:14px;font-weight:500;color:#fff;margin-bottom:6px}
+.step-d{font-size:12px;color:var(--text-muted);line-height:1.6}
+
+/* VIDEO */
+.video-outer{max-width:680px;margin:0 auto}
+.video-label-row{display:flex;align-items:center;gap:12px;margin-bottom:20px;justify-content:center}
+.video-label-line{flex:1;height:0.5px;background:var(--purple-border);max-width:120px}
+.video-label-text{font-size:12px;color:var(--text-faint);letter-spacing:0.5px}
+.video-frame{background:var(--surface);border:0.5px solid var(--purple-border);border-radius:20px;overflow:hidden}
+.video-placeholder{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#0D0D18;position:relative}
+.video-play-btn{width:72px;height:72px;border-radius:50%;background:rgba(124,92,246,0.15);border:0.5px solid var(--purple-border);display:flex;align-items:center;justify-content:center;transition:transform 0.2s,background 0.2s;cursor:pointer}
+.video-play-btn:hover{background:rgba(124,92,246,0.25);transform:scale(1.05)}
+.video-play-btn svg{width:28px;height:28px;fill:var(--purple);margin-left:4px}
+.video-main-caption{font-size:15px;font-weight:500;color:#fff}
+.video-sub-caption{font-size:12px;color:var(--text-faint);text-align:center;max-width:300px;line-height:1.5}
+
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:900px;margin:0 auto}
+.fc{background:var(--surface);border:0.5px solid rgba(124,92,246,0.12);border-radius:18px;padding:24px;transition:border-color 0.2s,transform 0.2s}
+.fc:hover{border-color:rgba(124,92,246,0.3);transform:translateY(-2px)}
+.fc-icon{width:40px;height:40px;background:var(--purple-dim);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px;color:var(--purple)}
+.fc-t{font-size:14px;font-weight:500;margin-bottom:6px}
+.fc-d{font-size:12px;color:var(--text-muted);line-height:1.7}
+
+/* COMPARE */
+.compare-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:0.5px solid rgba(124,92,246,0.15);border-radius:20px;overflow:hidden;max-width:700px;margin:0 auto}
+.comp-col{padding:24px 20px}
+.comp-col.mid{border-left:0.5px solid rgba(124,92,246,0.15);border-right:0.5px solid rgba(124,92,246,0.15);background:rgba(124,92,246,0.04)}
+.comp-head{font-size:14px;font-weight:500;margin-bottom:4px}
+.comp-sub{font-size:11px;margin-bottom:18px}
+.comp-item{font-size:12px;display:flex;align-items:center;gap:7px;margin-bottom:10px;color:var(--text-muted)}
+.comp-item.yes{color:rgba(255,255,255,0.7)}
+.comp-item.yes .ci{color:var(--purple)}
+.comp-item.no{opacity:0.3}
+.comp-item.no .ci{color:var(--error)}
+.ci{font-size:14px;flex-shrink:0}
+
+/* LANGUAGES */
+.langs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:700px;margin:0 auto 0}
+.lang{background:rgba(124,92,246,0.07);border:0.5px solid rgba(124,92,246,0.18);border-radius:999px;font-size:13px;padding:8px 18px;color:rgba(255,255,255,0.6);transition:background 0.2s,color 0.2s}
+.lang:hover{background:rgba(124,92,246,0.14);color:#fff}
+
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:900px;margin:0 auto}
+.rv{background:rgba(124,92,246,0.05);border:0.5px solid rgba(124,92,246,0.15);border-radius:18px;padding:22px}
+.rv-stars{display:flex;gap:3px;margin-bottom:12px}
+.rv-star{font-size:14px;color:var(--gold)}
+.rv-text{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:14px;font-style:italic}
+.rv-author{font-size:11px;color:var(--text-faint)}
+
+/* PRICING */
+.pricing-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:580px;margin:0 auto}
+.pc{background:var(--surface);border:0.5px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px}
+.pc.pro{border:1.5px solid var(--purple);position:relative}
+.pc-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;font-size:11px;font-weight:500;padding:4px 16px;border-radius:999px;white-space:nowrap}
+.pc-name{font-size:13px;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.3px}
+.pc-price-orig{font-size:14px;color:var(--text-faint);text-decoration:line-through;margin-bottom:2px}
+.pc-price{font-family:'DM Serif Display',serif;font-size:48px;color:var(--purple);line-height:1;margin-bottom:2px}
+.pc-period{font-size:12px;color:var(--text-faint);margin-bottom:24px;line-height:1.5}
+.pc-item{font-size:13px;color:var(--text-muted);display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.pc-item .ci{font-size:15px;color:var(--purple)}
+.pc-btn{width:100%;padding:13px;border-radius:999px;font-size:14px;font-weight:500;border:none;cursor:pointer;margin-top:20px;font-family:'DM Sans',sans-serif;transition:opacity 0.2s,transform 0.15s}
+.pc-btn:hover{transform:scale(1.02);opacity:0.9}
+.pc-btn-free{background:rgba(255,255,255,0.06);color:var(--text);border:0.5px solid rgba(255,255,255,0.1)}
+.pc-btn-pro{background:var(--purple);color:#fff}
+
+/* BOTTOM CTA */
+.bottom-cta-section{background:var(--dark);padding:100px 48px;text-align:center;position:relative;overflow:hidden}
+.bottom-glow{position:absolute;width:500px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,246,0.1) 0%,transparent 70%);bottom:-100px;left:50%;transform:translateX(-50%);pointer-events:none}
+.bottom-inner{position:relative;z-index:2}
+.bottom-h{font-family:'DM Serif Display',serif;font-size:52px;line-height:1.1;letter-spacing:-0.5px;margin-bottom:18px}
+.bottom-h span{color:var(--purple);font-style:italic}
+.bottom-p{font-size:16px;color:var(--text-muted);margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7}
+.bottom-btn{display:inline-flex;align-items:center;gap:10px;background:var(--purple);color:#fff;border:none;padding:18px 44px;border-radius:999px;font-size:17px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform 0.15s,opacity 0.15s}
+.bottom-btn:hover{transform:scale(1.03);opacity:0.9}
+.bottom-btn svg{width:22px;height:22px;fill:#fff;flex-shrink:0}
+.bottom-free{display:block;font-size:12px;color:var(--text-faint);margin-top:12px}
+
+/* FOOTER */
+footer{background:var(--darkest);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid var(--border)}
+.f-logo{font-family:'DM Serif Display',serif;font-size:18px;color:var(--purple)}
+.f-links{display:flex;gap:24px}
+.f-link{font-size:12px;color:var(--text-faint);text-decoration:none;transition:color 0.2s}
+.f-link:hover{color:var(--text-muted)}
+.f-copy{font-size:11px;color:rgba(255,255,255,0.12)}
+
+/* DIVIDER */
+.divline{border:none;border-top:0.5px solid var(--border)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ICONS inline SVG helpers */
+.icon-play{display:inline-block;width:1em;height:1em;vertical-align:middle}
 </style>
+</head>
+<body>
 
-<div class="nav">
+<nav>
   <div class="nav-logo">Explainly</div>
-  <button class="nav-cta"><i class="ti ti-brand-google-play" style="font-size:13px;vertical-align:-1px;margin-right:4px" aria-hidden="true"></i>Download free</button>
+  <div class="nav-links">
+    <a class="nav-link" href="#how">How it works</a>
+    <a class="nav-link" href="#features">Features</a>
+    <a class="nav-link" href="#pricing">Pricing</a>
+    <button class="nav-cta">Download free</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-pill"><div class="pill-dot"></div><div class="pill-text">Free to download &mdash; no sign up needed</div></div>
+    <h1 class="hero-h1">Stop copying answers.<br><em>Start understanding them.</em></h1>
+    <p class="hero-p">Snap any homework problem and get a real explanation &mdash; not just the answer. Calibrated to your grade. In your language.</p>
+    <p class="hero-p2">Math &nbsp;&middot;&nbsp; Science &nbsp;&middot;&nbsp; History &nbsp;&middot;&nbsp; Chemistry &nbsp;&middot;&nbsp; Biology &nbsp;&middot;&nbsp; English &nbsp;&middot;&nbsp; Essays</p>
+    <div class="hero-cta-wrap">
+      <button class="big-cta">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.18 23.76c.28.16.6.24.93.24.4 0 .8-.11 1.15-.32l14.4-8.32c.7-.4 1.12-1.12 1.12-1.92 0-.8-.43-1.52-1.12-1.92L5.26.6C4.91.39 4.51.28 4.11.28c-.33 0-.65.08-.93.24C2.52.96 2.06 1.74 2.06 2.6v18.8c0 .86.46 1.64 1.12 2.36z"/></svg>
+        Download on Google Play
+      </button>
+      <div class="cta-sub">Free forever &nbsp;&middot;&nbsp; No credit card &nbsp;&middot;&nbsp; No sign up</div>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item"><div class="trust-num">12<span>+</span></div><div class="trust-label">Languages</div></div>
+      <div class="trust-item"><div class="trust-num">4</div><div class="trust-label">Grade levels</div></div>
+      <div class="trust-item"><div class="trust-num">5</div><div class="trust-label">Cards per explanation</div></div>
+      <div class="trust-item"><div class="trust-num">6<span>+</span></div><div class="trust-label">Subjects</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHONES -->
+<div class="phones-section">
+  <div class="ph">
+    <div class="ph-notch"><div class="ph-nb"></div></div>
+    <div class="ph-body">
+      <div class="ph-eyebrow">Explainly</div>
+      <div class="ph-title">What are you<br>studying today?</div>
+      <div class="ph-cam">
+        <span class="ph-cam-icon">&#128247;</span>
+        <div class="ph-cam-t">Tap to get an explanation</div>
+        <div class="ph-cam-sub">Math &middot; Science &middot; History &middot; Essays</div>
+      </div>
+      <div class="ph-gal">Choose from gallery or screenshot</div>
+    </div>
+  </div>
+  <div class="ph offset">
+    <div class="ph-notch"><div class="ph-nb"></div></div>
+    <div class="ph-body">
+      <div class="ph-card-label">Step by step</div>
+      <div class="ph-card-q">Solving 2x + 6 = 14</div>
+      <div class="ph-step">
+        <div class="ph-step-label">Step 1</div>
+        <div class="ph-step-text">Subtract 6 from both sides.<br>2x = 8</div>
+      </div>
+      <div class="ph-step">
+        <div class="ph-step-label">Step 2</div>
+        <div class="ph-step-text">Divide both sides by 2.<br>x = 4</div>
+      </div>
+      <div class="ph-dots">
+        <div class="ph-dot"></div>
+        <div class="ph-dot"></div>
+        <div class="ph-dot a"></div>
+        <div class="ph-dot"></div>
+        <div class="ph-dot"></div>
+      </div>
+    </div>
+  </div>
+  <div class="ph">
+    <div class="ph-notch"><div class="ph-nb"></div></div>
+    <div class="ph-body">
+      <div class="ph-card-label">Check yourself</div>
+      <div class="ph-check-q">What is the value of x when 2x + 6 = 14?</div>
+      <div class="ph-option correct">
+        <div class="ph-opt-letter c">A</div>
+        <div class="ph-opt-text c">x = 4 &nbsp;&#10003;</div>
+      </div>
+      <div class="ph-option wrong">
+        <div class="ph-opt-letter w">B</div>
+        <div class="ph-opt-text">x = 8</div>
+      </div>
+      <div class="ph-option neutral">
+        <div class="ph-opt-letter n">C</div>
+        <div class="ph-opt-text">x = 6</div>
+      </div>
+      <div class="ph-dots">
+        <div class="ph-dot"></div>
+        <div class="ph-dot"></div>
+        <div class="ph-dot"></div>
+        <div class="ph-dot a"></div>
+        <div class="ph-dot"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="hero">
-  <div class="hero-pill"><div class="pill-dot"></div><div class="pill-text">Free to download — no sign up needed</div></div>
-  <div class="hero-h1">Stop copying answers.<br><span>Start understanding them.</span></div>
-  <div class="hero-p">Snap any homework problem and get a real explanation — not just the answer. Calibrated to your grade. In your language.</div>
-  <div class="hero-p2">Math · Science · History · Chemistry · Biology · English · Essays</div>
-  <div class="hero-cta-wrap">
-    <button class="big-cta"><i class="ti ti-brand-google-play" aria-hidden="true"></i>Download on Google Play</button>
-    <div class="cta-sub">Free forever · No credit card · No sign up</div>
-  </div>
-  <div class="trust-row">
-    <div class="trust-item"><div class="trust-num">12<span>+</span></div><div class="trust-label">Languages</div></div>
-    <div class="trust-item"><div class="trust-num">4</div><div class="trust-label">Grade levels</div></div>
-    <div class="trust-item"><div class="trust-num">5</div><div class="trust-label">Cards per explanation</div></div>
-    <div class="trust-item"><div class="trust-num">6<span>+</span></div><div class="trust-label">Subjects</div></div>
-  </div>
-  <div class="phones-hero">
-    <div class="ph ph2">
-      <div class="ph-notch"><div class="ph-nb"></div></div>
-      <div class="ph-body">
-        <div class="ph-label">Explainly</div>
-        <div class="ph-title">What are you<br>studying today?</div>
-        <div class="ph-cam"><i class="ti ti-camera" aria-hidden="true"></i><div class="ph-cam-t">Tap to get an explanation</div></div>
-        <div class="ph-gal">Choose from gallery or screenshot</div>
-      </div>
-    </div>
-    <div class="ph">
-      <div class="ph-notch"><div class="ph-nb"></div></div>
-      <div class="ph-body">
-        <div class="ph-label">Step by step</div>
-        <div class="ph-title">Solving 2x + 6 = 14</div>
-        <div class="ph-card">
-          <div class="ph-card-label">Step 1</div>
-          <div class="ph-card-text">Subtract 6 from both sides. 2x = 8</div>
-        </div>
-        <div class="ph-card">
-          <div class="ph-card-label">Step 2</div>
-          <div class="ph-card-text">Divide both sides by 2. x = 4</div>
-        </div>
-        <div class="ph-dots"><div class="ph-dot"></div><div class="ph-dot"></div><div class="ph-dot a"></div><div class="ph-dot"></div><div class="ph-dot"></div></div>
-      </div>
-    </div>
-    <div class="ph ph2">
-      <div class="ph-notch"><div class="ph-nb"></div></div>
-      <div class="ph-body">
-        <div class="ph-label">Check yourself</div>
-        <div class="ph-title">What is the value of x?</div>
-        <div class="ph-card" style="border-color:rgba(29,158,117,0.4);background:rgba(29,158,117,0.08)">
-          <div class="ph-card-label" style="color:#1D9E75">A — Correct</div>
-          <div class="ph-card-text">x = 4</div>
-        </div>
-        <div class="ph-card">
-          <div class="ph-card-label" style="color:rgba(255,255,255,0.3)">B</div>
-          <div class="ph-card-text">x = 8</div>
-        </div>
-        <div class="ph-dots"><div class="ph-dot"></div><div class="ph-dot"></div><div class="ph-dot"></div><div class="ph-dot a"></div><div class="ph-dot"></div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="section">
+<!-- PAIN VS SOLUTION -->
+<section class="section dark">
   <div class="sec-eyebrow">The problem</div>
-  <div class="sec-h2">Getting the answer is not the same as understanding it</div>
-  <div class="sec-sub" style="margin-bottom:32px">Other apps solve it for you. That works until the exam — when there's no app allowed.</div>
+  <h2 class="sec-h2">Getting the answer is not the<br>same as understanding it</h2>
+  <p class="sec-sub">Other apps solve it for you. That works until the exam &mdash; when there&rsquo;s no app allowed.</p>
   <div class="pain-grid">
     <div class="pain-card bad">
-      <div class="pain-icon bad"><i class="ti ti-x" aria-hidden="true"></i></div>
+      <div class="pain-icon bad">&#10005;</div>
       <div class="pain-title bad">Other homework apps</div>
-      <div class="pain-text">Show you the answer. You copy it. You pass the homework. You fail the test.</div>
+      <p class="pain-text">Show you the answer. You copy it. You pass the homework. You fail the test. The cycle continues.</p>
     </div>
     <div class="pain-card good">
-      <div class="pain-icon good"><i class="ti ti-check" aria-hidden="true"></i></div>
+      <div class="pain-icon good">&#10003;</div>
       <div class="pain-title good">Explainly</div>
-      <div class="pain-text">Teaches you the concept. Walks you through the steps. Tests you before showing the answer.</div>
+      <p class="pain-text">Teaches you the concept. Walks through the steps. Tests you before showing the answer. You actually learn.</p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="section dark">
+<!-- HOW IT WORKS -->
+<section class="section darkest" id="how">
   <div class="sec-eyebrow">How it works</div>
-  <div class="sec-h2 light">From confused to confident in 4 steps</div>
-  <div class="sec-sub light" style="margin-bottom:32px">Every explanation follows the same proven learning structure.</div>
+  <h2 class="sec-h2">From confused to confident<br>in four steps</h2>
+  <p class="sec-sub" style="margin-bottom:40px">Every explanation follows the same proven learning structure.</p>
   <div class="steps-wrap">
     <div class="step-col">
       <div class="step-n">1</div>
       <div class="step-t">Snap it</div>
-      <div class="step-d">Camera, gallery, or screenshot — any homework problem works</div>
+      <div class="step-d">Camera, gallery, or screenshot. Any homework problem works.</div>
     </div>
     <div class="step-col">
       <div class="step-n">2</div>
       <div class="step-t">Get taught</div>
-      <div class="step-d">5-card flow — concept, context, steps, self-check, answer</div>
+      <div class="step-d">5 cards &mdash; what it&rsquo;s asking, concept, steps, self-check, answer.</div>
     </div>
     <div class="step-col">
       <div class="step-n">3</div>
       <div class="step-t">Test yourself</div>
-      <div class="step-d">Answer a question before the answer is shown — it makes it stick</div>
+      <div class="step-d">Answer before the answer is shown. It makes it stick.</div>
     </div>
     <div class="step-col">
       <div class="step-n">4</div>
       <div class="step-t">Practice later</div>
-      <div class="step-d">Save problems and use Practice Mode to remember what you learned</div>
+      <div class="step-d">Save problems. Use Practice Mode to lock in what you learned.</div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="section alt">
+<!-- VIDEO -->
+<section class="section dark">
   <div class="sec-eyebrow">Meet Alex</div>
-  <div class="sec-h2">From lost at midnight to confident at exam time</div>
-  <div class="sec-sub" style="margin-bottom:28px">Watch Alex go from stuck on homework at 11pm to acing his test — and how Explainly made the difference.</div>
-  <div class="video-wrap">
-   <div class="video-placeholder">
-      <div class="video-play"><i class="ti ti-player-play" aria-hidden="true"></i></div>
-      <div class="video-caption">Meet Alex — and see how Explainly changed everything</div>
+  <h2 class="sec-h2">From lost at midnight to<br>confident at exam time</h2>
+  <p class="sec-sub">Watch Alex go from stuck on homework at 11pm to acing his test &mdash; and how Explainly made the difference.</p>
+  <div class="video-outer">
+    <div class="video-label-row">
+      <div class="video-label-line"></div>
+      <div class="video-label-text">2 min &nbsp;&middot;&nbsp; Animated short</div>
+      <div class="video-label-line"></div>
+    </div>
+    <div class="video-frame">
+      <div class="video-placeholder">
+        <div class="video-play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-main-caption">Watch Alex&rsquo;s story</div>
+        <div class="video-sub-caption">Replace this div with your YouTube embed iframe</div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="section">
+<!-- FEATURES -->
+<section class="section" id="features">
   <div class="sec-eyebrow">Features</div>
-  <div class="sec-h2">Built for students who actually want to learn</div>
-  <div class="sec-sub" style="margin-bottom:32px">Not just to finish homework.</div>
+  <h2 class="sec-h2">Built for students who actually<br>want to learn</h2>
+  <p class="sec-sub">Not just to finish homework.</p>
   <div class="feat-grid">
     <div class="fc">
-      <div class="fc-icon"><i class="ti ti-layers-subtract" aria-hidden="true"></i></div>
+      <div class="fc-icon">&#9776;</div>
       <div class="fc-t">5-card explanation flow</div>
-      <div class="fc-d">What it's asking, what you need to know, step by step, check yourself, then the answer.</div>
+      <p class="fc-d">What it&rsquo;s asking, what you need to know, step by step, check yourself, then the answer.</p>
     </div>
     <div class="fc">
-      <div class="fc-icon"><i class="ti ti-school" aria-hidden="true"></i></div>
+      <div class="fc-icon">&#127979;</div>
       <div class="fc-t">Grade-calibrated</div>
-      <div class="fc-d">Auto-detects your grade level. Elementary to college. Change it with one tap.</div>
+      <p class="fc-d">Auto-detects your grade. Elementary to college. Change it with one tap anytime.</p>
     </div>
     <div class="fc">
-      <div class="fc-icon"><i class="ti ti-pencil" aria-hidden="true"></i></div>
+      <div class="fc-icon">&#9998;</div>
       <div class="fc-t">Essay mode</div>
-      <div class="fc-d">Key angles, structure, opening sentences. Teaches you to write it yourself.</div>
+      <p class="fc-d">Key angles, structure, opening sentences. Teaches you to write it yourself &mdash; not for you.</p>
     </div>
     <div class="fc">
-      <div class="fc-icon"><i class="ti ti-brain" aria-hidden="true"></i></div>
+      <div class="fc-icon">&#129504;</div>
       <div class="fc-t">Practice Mode</div>
-      <div class="fc-d">New problems for math. Flashcards for everything else. Proven spaced repetition.</div>
+      <p class="fc-d">New problems for math. Flashcards for everything else. Proven spaced repetition science.</p>
     </div>
     <div class="fc">
-      <div class="fc-icon"><i class="ti ti-language" aria-hidden="true"></i></div>
+      <div class="fc-icon">&#127760;</div>
       <div class="fc-t">12 languages</div>
-      <div class="fc-d">Learn in the language you think in. Not just the language it's written in.</div>
+      <p class="fc-d">Get explained in the language you think in. Not just the language it&rsquo;s written in.</p>
     </div>
     <div class="fc">
-      <div class="fc-icon"><i class="ti ti-bulb" aria-hidden="true"></i></div>
+      <div class="fc-icon">&#128161;</div>
       <div class="fc-t">Simplify mode</div>
-      <div class="fc-d">Still confused? Tap "Explain simpler" for an even easier breakdown.</div>
+      <p class="fc-d">Still confused? Tap &ldquo;Explain simpler&rdquo; for an even easier breakdown &mdash; up to two levels.</p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="section dark">
-  <div class="sec-eyebrow">Languages</div>
-  <div class="sec-h2 light">Your homework. Your language.</div>
-  <div class="sec-sub light" style="margin-bottom:28px">A student in the Philippines studying from an English textbook can get every explanation in Tagalog.</div>
-  <div class="langs">
-    <div class="lang">English</div>
-    <div class="lang">Tagalog</div>
-    <div class="lang">Indonesian</div>
-    <div class="lang">Hindi</div>
-    <div class="lang">Spanish</div>
-    <div class="lang">French</div>
-    <div class="lang">German</div>
-    <div class="lang">Portuguese</div>
-    <div class="lang">Arabic</div>
-    <div class="lang">Chinese</div>
-    <div class="lang">Japanese</div>
-    <div class="lang">Korean</div>
+<!-- COMPARE -->
+<section class="section dark">
+  <div class="sec-eyebrow">Why Explainly wins</div>
+  <h2 class="sec-h2">Built different from every<br>other homework app</h2>
+  <p class="sec-sub" style="margin-bottom:36px">Other apps give you the answer. Explainly gives you the understanding.</p>
+  <div class="compare-wrap">
+    <div class="comp-col">
+      <div class="comp-head" style="color:rgba(255,255,255,0.3)">Other apps</div>
+      <div class="comp-sub" style="color:rgba(255,255,255,0.15)">Photomath, Gauth</div>
+      <div class="comp-item no"><span class="ci">&#10005;</span>Just shows the answer</div>
+      <div class="comp-item no"><span class="ci">&#10005;</span>Math only or weak multi-subject</div>
+      <div class="comp-item no"><span class="ci">&#10005;</span>No grade calibration</div>
+      <div class="comp-item no"><span class="ci">&#10005;</span>No essay support</div>
+      <div class="comp-item no"><span class="ci">&#10005;</span>No practice or retention</div>
+      <div class="comp-item no"><span class="ci">&#10005;</span>English only</div>
+    </div>
+    <div class="comp-col mid">
+      <div class="comp-head" style="color:#A78BFA">Explainly</div>
+      <div class="comp-sub" style="color:rgba(124,92,246,0.5)">The pocket tutor</div>
+      <div class="comp-item yes"><span class="ci">&#10003;</span>5-card teaching flow</div>
+      <div class="comp-item yes"><span class="ci">&#10003;</span>Every subject</div>
+      <div class="comp-item yes"><span class="ci">&#10003;</span>Auto grade detection</div>
+      <div class="comp-item yes"><span class="ci">&#10003;</span>Full essay mode</div>
+      <div class="comp-item yes"><span class="ci">&#10003;</span>Practice Mode</div>
+      <div class="comp-item yes"><span class="ci">&#10003;</span>12 languages</div>
+    </div>
+    <div class="comp-col">
+      <div class="comp-head" style="color:rgba(255,255,255,0.2)">A real tutor</div>
+      <div class="comp-sub" style="color:rgba(255,255,255,0.12)">$50&ndash;100/hour</div>
+      <div class="comp-item yes" style="opacity:0.25"><span class="ci">&#10003;</span>Teaches concepts</div>
+      <div class="comp-item yes" style="opacity:0.25"><span class="ci">&#10003;</span>Multi-subject</div>
+      <div class="comp-item yes" style="opacity:0.25"><span class="ci">&#10003;</span>Adjusts to level</div>
+      <div class="comp-item yes" style="opacity:0.25"><span class="ci">&#10003;</span>Essays too</div>
+      <div class="comp-item yes" style="opacity:0.25"><span class="ci">&#10003;</span>Practice drills</div>
+      <div class="comp-item no"><span class="ci">&#10005;</span>Not always available</div>
+    </div>
   </div>
-  <div class="sec-eyebrow" style="margin-bottom:12px">What students say</div>
-  <div class="sec-h2 light" style="margin-bottom:8px">Real students. Real results.</div>
-  <div class="sec-sub light" style="margin-bottom:28px">From students across Southeast Asia and beyond.</div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="section darkest">
+  <div class="sec-eyebrow">Languages</div>
+  <h2 class="sec-h2">Your homework. Your language.</h2>
+  <p class="sec-sub">A student in the Philippines studying from an English textbook can get every explanation in Tagalog. Your homework, your language.</p>
+  <div class="langs">
+    <div class="lang">&#127482;&#127480; English</div>
+    <div class="lang">&#127477;&#127469; Tagalog</div>
+    <div class="lang">&#127470;&#127465; Indonesian</div>
+    <div class="lang">&#127470;&#127475; Hindi</div>
+    <div class="lang">&#127466;&#127480; Spanish</div>
+    <div class="lang">&#127467;&#127479; French</div>
+    <div class="lang">&#127465;&#127466; German</div>
+    <div class="lang">&#127477;&#127481; Portuguese</div>
+    <div class="lang">&#127480;&#127462; Arabic</div>
+    <div class="lang">&#127464;&#127475; Chinese</div>
+    <div class="lang">&#127471;&#127477; Japanese</div>
+    <div class="lang">&#127472;&#127479; Korean</div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section dark">
+  <div class="sec-eyebrow">What students say</div>
+  <h2 class="sec-h2">Real students. Real results.</h2>
+  <p class="sec-sub">From students across Southeast Asia and beyond.</p>
   <div class="reviews-grid">
     <div class="rv">
       <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
-      <div class="rv-text">"Finally an app that actually teaches me. Not just gives me the answer. My grades went up in two weeks."</div>
-      <div class="rv-author">Maria S. — Grade 10, Philippines</div>
+      <p class="rv-text">&ldquo;Finally an app that actually teaches me. Not just gives me the answer. My grades went up in two weeks.&rdquo;</p>
+      <div class="rv-author">Maria S. &mdash; Grade 10, Philippines</div>
     </div>
     <div class="rv">
       <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
-      <div class="rv-text">"The essay mode is incredible. I had no idea how to structure my arguments. Now I do."</div>
-      <div class="rv-author">Rafi A. — Grade 11, Indonesia</div>
+      <p class="rv-text">&ldquo;The essay mode is incredible. I had no idea how to structure my arguments. Now I actually do.&rdquo;</p>
+      <div class="rv-author">Rafi A. &mdash; Grade 11, Indonesia</div>
     </div>
     <div class="rv">
       <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
-      <div class="rv-text">"Getting it explained in Tagalog changes everything. I actually understand it now."</div>
-      <div class="rv-author">Kyle M. — College, Philippines</div>
+      <p class="rv-text">&ldquo;Getting it explained in Tagalog changes everything. I understand so much better in my own language.&rdquo;</p>
+      <div class="rv-author">Kyle M. &mdash; College, Philippines</div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="section">
+<!-- PRICING -->
+<section class="section darkest" id="pricing">
   <div class="sec-eyebrow">Pricing</div>
-  <div class="sec-h2">Free to start. Powerful when you go Pro.</div>
-  <div class="sec-sub" style="margin-bottom:32px">No credit card. No sign up. Just download and go.</div>
+  <h2 class="sec-h2">Free to start. Powerful<br>when you go Pro.</h2>
+  <p class="sec-sub">No credit card. No sign up. Just download and go.</p>
   <div class="pricing-wrap">
     <div class="pc">
       <div class="pc-name">Free</div>
       <div class="pc-price">$0</div>
-      <div class="pc-period">forever — no catch</div>
-      <div class="pc-item"><i class="ti ti-check" aria-hidden="true"></i>5 explanations per day</div>
-      <div class="pc-item"><i class="ti ti-check" aria-hidden="true"></i>100 per month</div>
-      <div class="pc-item"><i class="ti ti-check" aria-hidden="true"></i>10 saved problems</div>
-      <div class="pc-item"><i class="ti ti-check" aria-hidden="true"></i>3 study guides/month</div>
-      <div class="pc-item"><i class="ti ti-check" aria-hidden="true"></i>1 Practice Mode trial</div>
+      <div class="pc-period">forever &mdash; no catch</div>
+      <div class="pc-item"><span class="ci">&#10003;</span>5 explanations per day</div>
+      <div class="pc-item"><span class="ci">&#10003;</span>100 per month</div>
+      <div class="pc-item"><span class="ci">&#10003;</span>10 saved problems</div>
+      <div class="pc-item"><span class="ci">&#10003;</span>3 study guides per month</div>
+      <div class="pc-item"><span class="ci">&#10003;</span>1 Practice Mode trial</div>
       <button class="pc-btn pc-btn-free">Download free</button>
     </div>
     <div class="pc pro">
@@ -333,30 +535,40 @@ body{font-family:var(--font-sans)}
       <div class="pc-name">Pro</div>
       <div class="pc-price-orig">$6.99/mo</div>
       <div class="pc-price">$4.99</div>
-      <div class="pc-period">per month for first 3 months · then $6.99</div>
-      <div class="pc-item"><i class="ti ti-check" aria-hidden="true"></i>Unlimited daily explanations</div>
-      <div class="pc-item"><i class="ti ti-check" aria-hidden="true"></i>500 per month</div>
-      <div class="pc-item"><i class="ti ti-check" aria-hidden="true"></i>25 saved problems</div>
-      <div class="pc-item"><i class="ti ti-check" aria-hidden="true"></i>10 study guides/month</div>
-      <div class="pc-item"><i class="ti ti-check" aria-hidden="true"></i>Full Practice Mode</div>
-      <button class="pc-btn pc-btn-pro">Get Pro — $4.99/mo</button>
+      <div class="pc-period">per month for first 3 months<br>then $6.99/mo &middot; or $44.99/year</div>
+      <div class="pc-item"><span class="ci">&#10003;</span>Unlimited daily explanations</div>
+      <div class="pc-item"><span class="ci">&#10003;</span>500 per month</div>
+      <div class="pc-item"><span class="ci">&#10003;</span>25 saved problems</div>
+      <div class="pc-item"><span class="ci">&#10003;</span>10 study guides per month</div>
+      <div class="pc-item"><span class="ci">&#10003;</span>Full Practice Mode</div>
+      <button class="pc-btn pc-btn-pro">Get Pro &mdash; $4.99/mo</button>
     </div>
   </div>
-</div>
+</section>
 
-<div class="bottom-cta">
-  <div class="bottom-h">Ready to actually<br><span>understand your homework?</span></div>
-  <div class="bottom-p">Join thousands of students who are learning — not just copying. Download free and get your first explanation in under 60 seconds.</div>
-  <button class="bottom-cta-btn"><i class="ti ti-brand-google-play" style="font-size:20px" aria-hidden="true"></i>Download free on Google Play</button>
-  <span class="bottom-free">Free forever · No sign up · Works on any Android phone</span>
-</div>
+<!-- BOTTOM CTA -->
+<section class="bottom-cta-section">
+  <div class="bottom-glow"></div>
+  <div class="bottom-inner">
+    <h2 class="bottom-h">Ready to actually<br><span>understand your homework?</span></h2>
+    <p class="bottom-p">Join students who are learning &mdash; not just copying. Download free and get your first explanation in under 60 seconds.</p>
+    <button class="bottom-btn">
+      <svg viewBox="0 0 24 24"><path d="M3.18 23.76c.28.16.6.24.93.24.4 0 .8-.11 1.15-.32l14.4-8.32c.7-.4 1.12-1.12 1.12-1.92 0-.8-.43-1.52-1.12-1.92L5.26.6C4.91.39 4.51.28 4.11.28c-.33 0-.65.08-.93.24C2.52.96 2.06 1.74 2.06 2.6v18.8c0 .86.46 1.64 1.12 2.36z"/></svg>
+      Download free on Google Play
+    </button>
+    <span class="bottom-free">Free forever &nbsp;&middot;&nbsp; No sign up &nbsp;&middot;&nbsp; Works on any Android phone</span>
+  </div>
+</section>
 
-<div class="footer">
+<footer>
   <div class="f-logo">Explainly</div>
   <div class="f-links">
-    <a class="f-link" href="#">Privacy policy</a>
-    <a class="f-link" href="#">Terms of service</a>
-    <a class="f-link" href="#">Contact</a>
+    <a class="f-link" href="https://dbrit702-cmyk.github.io/explainly-legal/privacy-policy">Privacy policy</a>
+    <a class="f-link" href="https://dbrit702-cmyk.github.io/explainly-legal/terms-of-service">Terms of service</a>
+    <a class="f-link" href="mailto:dbrit702@gmail.com">Contact</a>
   </div>
-  <div class="f-copy">2026 Britten Labs</div>
-</div>
+  <div class="f-copy">&copy; 2026 Britten Labs</div>
+</footer>
+
+</body>
+</html>
