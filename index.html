@@ -11,12 +11,14 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --purple:#7C5CF6;
+  --purple-light:#A78BFA;
   --purple-dim:rgba(124,92,246,0.1);
   --purple-border:rgba(124,92,246,0.25);
   --dark:#0F0F14;
   --darker:#0A0A10;
   --darkest:#070710;
   --surface:#13131C;
+  --surface2:#1A1A26;
   --text:#fff;
   --text-muted:rgba(255,255,255,0.5);
   --text-faint:rgba(255,255,255,0.28);
@@ -57,7 +59,7 @@ nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between
 .trust-num span{color:var(--purple)}
 .trust-label{font-size:11px;color:var(--text-faint);margin-top:3px}
 
-/* PHONES */
+/* PHONES HERO */
 .phones-section{padding:48px 20px;background:var(--darker);display:flex;flex-direction:column;gap:20px;align-items:center}
 .ph{width:100%;max-width:280px;background:var(--surface);border-radius:28px;border:0.5px solid var(--purple-border);overflow:hidden}
 .ph-notch{height:22px;background:var(--darker);display:flex;align-items:center;justify-content:center}
@@ -82,7 +84,7 @@ nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between
 .ph-option{border-radius:10px;padding:10px 12px;margin-bottom:7px;display:flex;align-items:center;gap:8px}
 .ph-option.correct{background:rgba(29,158,117,0.12);border:0.5px solid rgba(29,158,117,0.3)}
 .ph-option.wrong{background:rgba(226,75,74,0.08);border:0.5px solid rgba(226,75,74,0.15)}
-.ph-option.neutral{background:var(--purple-dim);border:0.5px solid var(--purple-border)}
+.ph-option.neutral{background:var(--surface2);border:0.5px solid var(--border)}
 .ph-opt-letter{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;flex-shrink:0}
 .ph-opt-letter.c{background:var(--success);color:#fff}
 .ph-opt-letter.w{background:var(--error);color:#fff}
@@ -117,21 +119,175 @@ nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between
 .step-col{padding:22px 18px;border-bottom:0.5px solid rgba(124,92,246,0.1);display:flex;align-items:flex-start;gap:16px}
 .step-col:last-child{border-bottom:none}
 .step-n{width:34px;height:34px;border-radius:999px;border:0.5px solid rgba(124,92,246,0.35);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--purple);flex-shrink:0}
-.step-content{}
 .step-t{font-size:14px;font-weight:500;color:#fff;margin-bottom:4px}
 .step-d{font-size:13px;color:var(--text-muted);line-height:1.6}
 
-/* VIDEO */
-.video-outer{width:100%}
-.video-label-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;justify-content:center}
-.video-label-line{flex:1;height:0.5px;background:var(--purple-border);max-width:80px}
-.video-label-text{font-size:11px;color:var(--text-faint);letter-spacing:0.5px}
-.video-frame{background:var(--surface);border:0.5px solid var(--purple-border);border-radius:var(--radius);overflow:hidden}
-.video-placeholder{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#0D0D18}
-.video-play-btn{width:64px;height:64px;border-radius:50%;background:rgba(124,92,246,0.15);border:0.5px solid var(--purple-border);display:flex;align-items:center;justify-content:center}
-.video-play-btn svg{width:26px;height:26px;fill:var(--purple);margin-left:3px}
-.video-main-caption{font-size:14px;font-weight:500;color:#fff}
-.video-sub-caption{font-size:11px;color:var(--text-faint);text-align:center;max-width:240px;line-height:1.5}
+/* =============================================
+   SCREENSHOT SHOWCASE
+   ============================================= */
+.screenshots-section{padding:64px 20px;background:var(--darkest);overflow:hidden}
+.screenshots-scroll{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  padding:8px 4px 24px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.screenshots-scroll::-webkit-scrollbar{display:none}
+.screenshot-slide{
+  flex-shrink:0;
+  scroll-snap-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+  width:220px;
+}
+.ss-label{
+  font-size:11px;color:var(--text-faint);
+  letter-spacing:0.8px;text-transform:uppercase;font-weight:500;
+  text-align:center;
+}
+.ss-dots-row{display:flex;gap:6px;justify-content:center;margin-top:4px}
+.ss-nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.12);cursor:pointer;transition:background 0.2s,width 0.2s}
+.ss-nav-dot.active{background:var(--purple);width:16px;border-radius:999px}
+
+/* PHONE SHELL */
+.ss-phone{
+  width:200px;
+  background:var(--dark);
+  border-radius:36px;
+  border:1px solid rgba(124,92,246,0.22);
+  overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,0.6),0 0 30px rgba(124,92,246,0.06);
+  position:relative;
+}
+.ss-status{
+  height:36px;background:var(--dark);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 16px;position:relative;
+}
+.ss-di{
+  position:absolute;top:6px;left:50%;transform:translateX(-50%);
+  width:72px;height:20px;background:#000;border-radius:14px;z-index:2;
+}
+.ss-time{font-size:11px;font-weight:500;color:#fff}
+.ss-batt{
+  width:16px;height:8px;border-radius:2px;border:1px solid rgba(255,255,255,0.35);
+  position:relative;padding:1px;
+}
+.ss-batt::after{content:'';position:absolute;right:-3px;top:50%;transform:translateY(-50%);width:2px;height:4px;background:rgba(255,255,255,0.35);border-radius:0 1px 1px 0}
+.ss-batt-fill{height:100%;background:rgba(255,255,255,0.6);border-radius:1px;width:70%}
+.ss-screen{height:400px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.ss-tabs{
+  height:44px;background:rgba(15,15,20,0.97);
+  border-top:0.5px solid var(--border);
+  display:flex;align-items:center;justify-content:space-around;
+  flex-shrink:0;
+}
+.ss-tab{display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;padding:4px 0}
+.ss-tab-icon{font-size:14px;opacity:0.3}
+.ss-tab-icon.on{opacity:1;color:var(--purple)}
+.ss-tab-lbl{font-size:8px;color:rgba(255,255,255,0.25);font-weight:500}
+.ss-tab-lbl.on{color:var(--purple)}
+.ss-home{height:26px;background:var(--dark);display:flex;align-items:center;justify-content:center}
+.ss-home-bar{width:72px;height:3px;background:rgba(255,255,255,0.15);border-radius:999px}
+
+/* ---- SCREEN CONTENTS ---- */
+/* Shared */
+.ss-header{padding:10px 14px 9px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:8px;flex-shrink:0}
+.ss-back{width:24px;height:24px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,0.6);flex-shrink:0}
+.ss-subj{flex:1;text-align:center;font-size:11px;font-weight:500;color:var(--purple)}
+.ss-bm{width:24px;height:24px;border-radius:50%;background:var(--purple-dim);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--purple)}
+.ss-prog-row{padding:8px 14px;background:var(--surface);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.ss-pdots{display:flex;gap:4px;align-items:center}
+.ss-pd{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.1)}
+.ss-pd.a{width:12px;border-radius:999px;background:var(--purple)}
+.ss-pd.d{background:rgba(124,92,246,0.3)}
+.ss-pnav{width:22px;height:22px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff}
+.ss-grade-row{padding:6px 14px;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.ss-grade-pill{background:var(--purple-dim);border-radius:999px;padding:3px 9px;font-size:8px;color:var(--purple-light);font-weight:500}
+.ss-grade-hint{font-size:9px;color:var(--text-faint)}
+.ss-body{flex:1;padding:10px 12px;overflow:hidden;display:flex;flex-direction:column;gap:8px}
+.ss-card{background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:11px;display:flex;flex-direction:column;gap:7px}
+.ss-card-lbl{font-size:8px;color:var(--purple);letter-spacing:0.8px;text-transform:uppercase;font-weight:600}
+.ss-card-body{font-size:10px;color:rgba(255,255,255,0.75);line-height:1.55}
+.ss-next{background:var(--purple);border-radius:999px;padding:9px;text-align:center;font-size:10px;font-weight:500;color:#fff}
+.ss-sec-row{display:flex;gap:6px}
+.ss-sec{flex:1;border:1px solid var(--purple-border);border-radius:999px;padding:7px;text-align:center;font-size:9px;color:var(--purple);font-weight:500}
+
+/* Screen 1 — HOME */
+.sc-home{background:var(--dark);padding:14px 12px;display:flex;flex-direction:column;gap:10px;height:100%}
+.sc-home-ey{font-size:8px;color:var(--purple);letter-spacing:1px;text-transform:uppercase;font-weight:500;text-align:center}
+.sc-home-title{font-family:'DM Serif Display',serif;font-size:16px;color:#fff;text-align:center;line-height:1.3}
+.sc-cam{background:var(--purple-dim);border:1px dashed var(--purple-border);border-radius:14px;padding:20px 10px;text-align:center;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px}
+.sc-cam-icon{width:40px;height:40px;background:rgba(124,92,246,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--purple)}
+.sc-cam-t{font-size:10px;font-weight:500;color:#fff}
+.sc-cam-sub{font-size:9px;color:var(--text-muted)}
+.sc-gal{background:transparent;border:0.5px solid var(--purple-border);color:var(--purple);padding:8px;border-radius:999px;text-align:center;font-size:9px;font-weight:500}
+.sc-limit{display:flex;flex-direction:column;gap:4px}
+.sc-limit-bar{height:2px;background:rgba(255,255,255,0.07);border-radius:999px;overflow:hidden}
+.sc-limit-fill{height:100%;width:40%;background:var(--purple);border-radius:999px}
+.sc-limit-text{font-size:8px;color:var(--text-faint);text-align:center}
+
+/* Screen 2 — STEPS */
+.sc-step-item{display:flex;align-items:flex-start;gap:7px;background:rgba(124,92,246,0.06);border:0.5px solid var(--purple-border);border-radius:8px;padding:8px}
+.sc-step-num{width:18px;height:18px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:#fff;flex-shrink:0;margin-top:1px}
+.sc-step-text{font-size:10px;color:rgba(255,255,255,0.72);line-height:1.5}
+.sc-step-text strong{color:#fff}
+
+/* Screen 3 — CHECK */
+.sc-opt{border-radius:8px;padding:7px 9px;margin-bottom:5px;display:flex;align-items:center;gap:7px}
+.sc-opt.correct{background:rgba(29,158,117,0.1);border:0.5px solid rgba(29,158,117,0.35)}
+.sc-opt.wrong{background:rgba(226,75,74,0.07);border:0.5px solid rgba(226,75,74,0.2)}
+.sc-opt.neutral{background:var(--surface2);border:0.5px solid var(--border)}
+.sc-opt-l{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;flex-shrink:0}
+.sc-opt-l.c{background:var(--success);color:#fff}
+.sc-opt-l.w{background:var(--error);color:#fff}
+.sc-opt-l.n{background:rgba(124,92,246,0.15);color:var(--purple)}
+.sc-opt-t{font-size:9px}
+.sc-opt-t.c{color:var(--success)}
+.sc-opt-t.w{color:var(--error);opacity:0.65}
+.sc-opt-t.n{color:var(--text-muted)}
+.sc-feedback{display:flex;align-items:flex-start;gap:6px;background:rgba(29,158,117,0.07);border:0.5px solid rgba(29,158,117,0.25);border-radius:8px;padding:8px;margin-top:4px}
+.sc-fb-text{font-size:9px;line-height:1.5;color:rgba(255,255,255,0.6)}
+.sc-fb-text strong{color:var(--success)}
+
+/* Screen 4 — ESSAY */
+.sc-angle{display:flex;align-items:flex-start;gap:7px;background:rgba(124,92,246,0.06);border:0.5px solid var(--purple-border);border-radius:8px;padding:8px;margin-bottom:6px}
+.sc-angle-num{width:18px;height:18px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:#fff;flex-shrink:0;margin-top:1px}
+.sc-angle-text{font-size:10px;color:rgba(255,255,255,0.72);line-height:1.5}
+.sc-hint{display:flex;align-items:flex-start;gap:6px;background:var(--purple-dim);border:0.5px solid var(--purple-border);border-radius:8px;padding:8px}
+.sc-hint-text{font-size:9px;color:var(--purple-light);line-height:1.5}
+
+/* Screen 5 — PRACTICE */
+.sc-pheader{padding:10px 14px 9px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:8px;flex-shrink:0}
+.sc-pback{width:24px;height:24px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,0.6)}
+.sc-pcenter{flex:1;text-align:center}
+.sc-ptitle{font-size:11px;font-weight:500;color:#fff}
+.sc-psub{font-size:9px;color:var(--text-faint)}
+.sc-pbar{height:2px;background:rgba(255,255,255,0.06);flex-shrink:0}
+.sc-pbar-fill{height:100%;width:43%;background:var(--purple)}
+.sc-pbody{flex:1;padding:10px 12px;display:flex;flex-direction:column;gap:8px;overflow:hidden}
+.sc-pbadge{display:inline-flex;align-items:center;gap:5px;align-self:flex-start;background:var(--purple-dim);border:0.5px solid var(--purple-border);border-radius:999px;padding:4px 10px}
+.sc-pbadge-text{font-size:9px;color:var(--purple);font-weight:500}
+.sc-pcard{background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:11px;display:flex;flex-direction:column;gap:6px}
+.sc-pcard-lbl{font-size:8px;color:var(--purple);letter-spacing:0.8px;text-transform:uppercase;font-weight:600}
+.sc-pcard-q{font-size:11px;font-weight:500;color:#fff;line-height:1.5}
+.sc-pcard-concept{font-size:9px;color:var(--text-faint);font-style:italic}
+.sc-psol{background:var(--purple-dim);border:0.5px solid var(--purple-border);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:7px}
+.sc-psol-lbl{font-size:8px;color:var(--purple);letter-spacing:0.8px;text-transform:uppercase;font-weight:600}
+.sc-psol-step{display:flex;align-items:flex-start;gap:6px}
+.sc-psol-num{width:16px;height:16px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;color:#fff;flex-shrink:0;margin-top:1px}
+.sc-psol-text{font-size:10px;color:rgba(255,255,255,0.72);line-height:1.5}
+.sc-pans{display:flex;align-items:center;gap:6px;padding-top:7px;border-top:0.5px solid var(--purple-border)}
+.sc-pans-lbl{font-size:9px;color:var(--purple);font-weight:600}
+.sc-pans-val{font-size:11px;color:#fff;font-weight:600}
+.sc-pbtns{display:flex;gap:7px}
+.sc-pgot{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;background:rgba(29,158,117,0.1);border:1px solid rgba(29,158,117,0.35);border-radius:999px;padding:8px;font-size:10px;font-weight:500;color:var(--success)}
+.sc-pstill{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;background:rgba(226,75,74,0.07);border:1px solid rgba(226,75,74,0.25);border-radius:999px;padding:8px;font-size:10px;font-weight:500;color:var(--error)}
 
 /* FEATURES */
 .feat-grid{display:flex;flex-direction:column;gap:12px}
@@ -199,12 +355,9 @@ footer{background:var(--darkest);padding:28px 20px;border-top:0.5px solid var(--
 .f-link{font-size:12px;color:var(--text-faint);text-decoration:none}
 .f-copy{font-size:11px;color:rgba(255,255,255,0.12)}
 
-/* DIVIDER */
-.divline{border:none;border-top:0.5px solid var(--border)}
-
-/* ============================================
-   TABLET — 640px+
-   ============================================ */
+/* =============================================
+   TABLET 640px+
+   ============================================= */
 @media(min-width:640px){
   nav{padding:14px 32px}
   .hero{padding:80px 32px 64px}
@@ -230,11 +383,15 @@ footer{background:var(--darkest);padding:28px 20px;border-top:0.5px solid var(--
   .pc{flex:1}
   .bottom-h{font-size:44px}
   .footer-inner{flex-direction:row;justify-content:space-between;text-align:left}
+  .screenshots-scroll{padding:8px 16px 28px}
+  .screenshot-slide{width:240px}
+  .ss-phone{width:220px}
+  .ss-screen{height:440px}
 }
 
-/* ============================================
-   DESKTOP — 1024px+
-   ============================================ */
+/* =============================================
+   DESKTOP 1024px+
+   ============================================= */
 @media(min-width:1024px){
   nav{padding:14px 48px}
   .nav-links{display:flex;gap:28px;align-items:center}
@@ -245,7 +402,6 @@ footer{background:var(--darkest);padding:28px 20px;border-top:0.5px solid var(--
   .hero-glow{width:600px;height:600px}
   .big-cta{width:auto;padding:16px 40px}
   .trust-row{gap:48px;display:flex;justify-content:center}
-  .trust-item{text-align:center}
   .trust-num{font-size:32px}
   .phones-section{gap:32px;padding:80px 48px}
   .ph{max-width:240px}
@@ -256,7 +412,6 @@ footer{background:var(--darkest);padding:28px 20px;border-top:0.5px solid var(--
   .step-col{flex-direction:column;align-items:flex-start;border-right:0.5px solid rgba(124,92,246,0.1);border-bottom:none;padding:28px 20px}
   .step-col:last-child{border-right:none}
   .step-n{margin-bottom:14px}
-  .video-outer{max-width:680px;margin:0 auto}
   .feat-grid{grid-template-columns:repeat(3,1fr);max-width:900px;margin:0 auto}
   .fc:hover{transform:translateY(-2px);border-color:rgba(124,92,246,0.3)}
   .compare-wrap{max-width:700px;margin:0 auto;border:0.5px solid rgba(124,92,246,0.15);border-radius:var(--radius);overflow:hidden;gap:0}
@@ -269,6 +424,11 @@ footer{background:var(--darkest);padding:28px 20px;border-top:0.5px solid var(--
   .bottom-btn{width:auto;padding:18px 44px}
   footer{padding:28px 48px}
   .footer-inner{flex-direction:row;justify-content:space-between;text-align:left}
+  .screenshots-section{padding:80px 48px}
+  .screenshots-scroll{justify-content:center;overflow-x:visible;flex-wrap:nowrap;gap:20px;padding:8px 0 32px}
+  .screenshot-slide{width:200px}
+  .ss-phone{width:190px}
+  .ss-screen{height:420px}
 }
 </style>
 </head>
@@ -307,18 +467,14 @@ footer{background:var(--darkest);padding:28px 20px;border-top:0.5px solid var(--
   </div>
 </section>
 
-<!-- PHONES -->
+<!-- HERO PHONES -->
 <div class="phones-section">
   <div class="ph">
     <div class="ph-notch"><div class="ph-nb"></div></div>
     <div class="ph-body">
       <div class="ph-eyebrow">Explainly</div>
       <div class="ph-title">What are you<br>studying today?</div>
-      <div class="ph-cam">
-        <span class="ph-cam-icon">&#128247;</span>
-        <div class="ph-cam-t">Tap to get an explanation</div>
-        <div class="ph-cam-sub">Math &middot; Science &middot; History &middot; Essays</div>
-      </div>
+      <div class="ph-cam"><span class="ph-cam-icon">&#128247;</span><div class="ph-cam-t">Tap to get an explanation</div><div class="ph-cam-sub">Math &middot; Science &middot; History &middot; Essays</div></div>
       <div class="ph-gal">Choose from gallery or screenshot</div>
     </div>
   </div>
@@ -326,44 +482,21 @@ footer{background:var(--darkest);padding:28px 20px;border-top:0.5px solid var(--
     <div class="ph-notch"><div class="ph-nb"></div></div>
     <div class="ph-body">
       <div class="ph-card-label">Step by step</div>
-      <div class="ph-card-q">Solving 2x + 6 = 14</div>
-      <div class="ph-step">
-        <div class="ph-step-label">Step 1</div>
-        <div class="ph-step-text">Subtract 6 from both sides. 2x = 8</div>
-      </div>
-      <div class="ph-step">
-        <div class="ph-step-label">Step 2</div>
-        <div class="ph-step-text">Divide both sides by 2. x = 4</div>
-      </div>
-      <div class="ph-dots">
-        <div class="ph-dot"></div><div class="ph-dot"></div>
-        <div class="ph-dot a"></div>
-        <div class="ph-dot"></div><div class="ph-dot"></div>
-      </div>
+      <div class="ph-card-q">Solving 3x + 6 = 21</div>
+      <div class="ph-step"><div class="ph-step-label">Step 1</div><div class="ph-step-text">Subtract 6 from both sides. 3x = 15</div></div>
+      <div class="ph-step"><div class="ph-step-label">Step 2</div><div class="ph-step-text">Divide both sides by 3. x = 5</div></div>
+      <div class="ph-dots"><div class="ph-dot"></div><div class="ph-dot"></div><div class="ph-dot a"></div><div class="ph-dot"></div><div class="ph-dot"></div></div>
     </div>
   </div>
   <div class="ph">
     <div class="ph-notch"><div class="ph-nb"></div></div>
     <div class="ph-body">
       <div class="ph-card-label">Check yourself</div>
-      <div class="ph-check-q">What is the value of x when 2x + 6 = 14?</div>
-      <div class="ph-option correct">
-        <div class="ph-opt-letter c">A</div>
-        <div class="ph-opt-text c">x = 4 &nbsp;&#10003;</div>
-      </div>
-      <div class="ph-option wrong">
-        <div class="ph-opt-letter w">B</div>
-        <div class="ph-opt-text">x = 8</div>
-      </div>
-      <div class="ph-option neutral">
-        <div class="ph-opt-letter n">C</div>
-        <div class="ph-opt-text">x = 6</div>
-      </div>
-      <div class="ph-dots">
-        <div class="ph-dot"></div><div class="ph-dot"></div><div class="ph-dot"></div>
-        <div class="ph-dot a"></div>
-        <div class="ph-dot"></div>
-      </div>
+      <div class="ph-check-q">What is x when 3x + 6 = 21?</div>
+      <div class="ph-option correct"><div class="ph-opt-letter c">A</div><div class="ph-opt-text c">x = 5 &nbsp;&#10003;</div></div>
+      <div class="ph-option wrong"><div class="ph-opt-letter w">B</div><div class="ph-opt-text">x = 7</div></div>
+      <div class="ph-option neutral"><div class="ph-opt-letter n">C</div><div class="ph-opt-text">x = 3</div></div>
+      <div class="ph-dots"><div class="ph-dot"></div><div class="ph-dot"></div><div class="ph-dot"></div><div class="ph-dot a"></div><div class="ph-dot"></div></div>
     </div>
   </div>
 </div>
@@ -393,57 +526,199 @@ footer{background:var(--darkest);padding:28px 20px;border-top:0.5px solid var(--
   <h2 class="sec-h2">From confused to confident in four steps</h2>
   <p class="sec-sub">Every explanation follows the same proven learning structure.</p>
   <div class="steps-wrap">
-    <div class="step-col">
-      <div class="step-n">1</div>
-      <div class="step-content">
-        <div class="step-t">Snap it</div>
-        <div class="step-d">Camera, gallery, or screenshot. Any homework problem works.</div>
-      </div>
-    </div>
-    <div class="step-col">
-      <div class="step-n">2</div>
-      <div class="step-content">
-        <div class="step-t">Get taught</div>
-        <div class="step-d">5 cards &mdash; concept, context, steps, self-check, answer.</div>
-      </div>
-    </div>
-    <div class="step-col">
-      <div class="step-n">3</div>
-      <div class="step-content">
-        <div class="step-t">Test yourself</div>
-        <div class="step-d">Answer before the answer is shown. Makes it stick.</div>
-      </div>
-    </div>
-    <div class="step-col">
-      <div class="step-n">4</div>
-      <div class="step-content">
-        <div class="step-t">Practice later</div>
-        <div class="step-d">Save problems. Practice Mode locks in what you learned.</div>
-      </div>
-    </div>
+    <div class="step-col"><div class="step-n">1</div><div><div class="step-t">Snap it</div><div class="step-d">Camera, gallery, or screenshot. Any homework problem works.</div></div></div>
+    <div class="step-col"><div class="step-n">2</div><div><div class="step-t">Get taught</div><div class="step-d">5 cards &mdash; concept, context, steps, self-check, answer.</div></div></div>
+    <div class="step-col"><div class="step-n">3</div><div><div class="step-t">Test yourself</div><div class="step-d">Answer before the answer is shown. Makes it stick.</div></div></div>
+    <div class="step-col"><div class="step-n">4</div><div><div class="step-t">Practice later</div><div class="step-d">Save problems. Practice Mode locks in what you learned.</div></div></div>
   </div>
 </section>
 
-<!-- VIDEO -->
-<section class="section dark">
-  <div class="sec-eyebrow">Meet Alex</div>
-  <h2 class="sec-h2">From lost at midnight to confident at exam time</h2>
-  <p class="sec-sub">Watch Alex go from stuck on homework at 11pm to acing his test &mdash; and how Explainly made the difference.</p>
-  <div class="video-outer">
-    <div class="video-label-row">
-      <div class="video-label-line"></div>
-      <div class="video-label-text">2 min &nbsp;&middot;&nbsp; Animated short</div>
-      <div class="video-label-line"></div>
-    </div>
-    <div class="video-frame">
-      <div class="video-placeholder">
-        <div class="video-play-btn">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+<!-- SCREENSHOTS SHOWCASE -->
+<section class="screenshots-section">
+  <div class="sec-eyebrow">See it in action</div>
+  <h2 class="sec-h2" style="color:#fff">Every screen built for learning</h2>
+  <p class="sec-sub" style="color:rgba(255,255,255,0.4);margin-bottom:36px">Swipe to explore the full explanation flow.</p>
+
+  <div class="screenshots-scroll" id="ssScroll">
+
+    <!-- SLIDE 1: HOME -->
+    <div class="screenshot-slide">
+      <div class="ss-phone">
+        <div class="ss-status"><span class="ss-time">9:41</span><div class="ss-di"></div><div class="ss-batt"><div class="ss-batt-fill"></div></div></div>
+        <div class="ss-screen">
+          <div class="sc-home">
+            <div><div class="sc-home-ey">Explainly</div><div class="sc-home-title" style="font-family:'DM Serif Display',serif">What are you<br>studying today?</div></div>
+            <div class="sc-cam">
+              <div class="sc-cam-icon">&#128247;</div>
+              <div class="sc-cam-t">Tap to get an explanation</div>
+              <div class="sc-cam-sub">Math · Science · History · Essays</div>
+            </div>
+            <div class="sc-gal">Choose from gallery or screenshot</div>
+            <div class="sc-limit"><div class="sc-limit-bar"><div class="sc-limit-fill"></div></div><div class="sc-limit-text">2 of 5 free explanations remaining today</div></div>
+          </div>
         </div>
-        <div class="video-main-caption">Watch Alex&rsquo;s story</div>
-        <div class="video-sub-caption">Replace this div with your YouTube embed iframe</div>
+        <div class="ss-tabs">
+          <div class="ss-tab"><div class="ss-tab-icon on">⌂</div><div class="ss-tab-lbl on">Home</div></div>
+          <div class="ss-tab"><div class="ss-tab-icon">⊞</div><div class="ss-tab-lbl">Saved</div></div>
+          <div class="ss-tab"><div class="ss-tab-icon">⚙</div><div class="ss-tab-lbl">Settings</div></div>
+        </div>
+        <div class="ss-home"><div class="ss-home-bar"></div></div>
       </div>
+      <div class="ss-label">Home Screen</div>
     </div>
+
+    <!-- SLIDE 2: STEP BY STEP MATH -->
+    <div class="screenshot-slide">
+      <div class="ss-phone">
+        <div class="ss-status"><span class="ss-time">9:41</span><div class="ss-di"></div><div class="ss-batt"><div class="ss-batt-fill"></div></div></div>
+        <div class="ss-screen">
+          <div class="ss-header"><div class="ss-back">&#8592;</div><div class="ss-subj">&#128208; Mathematics</div><div class="ss-bm">&#9873;</div></div>
+          <div class="ss-prog-row">
+            <div class="ss-pnav">&#8592;</div>
+            <div class="ss-pdots"><div class="ss-pd d"></div><div class="ss-pd d"></div><div class="ss-pd a"></div><div class="ss-pd"></div><div class="ss-pd"></div></div>
+            <div style="width:22px"></div>
+          </div>
+          <div class="ss-grade-row"><div class="ss-grade-pill">✏ High School</div><div class="ss-grade-hint">Tap to change</div></div>
+          <div class="ss-body">
+            <div class="ss-card">
+              <div class="ss-card-lbl">Step by Step</div>
+              <div class="sc-step-item"><div class="sc-step-num">1</div><div class="sc-step-text">Subtract <strong>6</strong> from both sides.<br>3x = 15</div></div>
+              <div class="sc-step-item"><div class="sc-step-num">2</div><div class="sc-step-text">Divide both sides by <strong>3</strong>.<br>x = 5</div></div>
+              <div class="sc-step-item"><div class="sc-step-num">3</div><div class="sc-step-text">Verify: 3(5) + 6 = <strong>21 ✓</strong></div></div>
+            </div>
+            <div class="ss-next">Ready &rarr; Check myself</div>
+            <div class="ss-sec-row"><div class="ss-sec">Explain simpler</div><div class="ss-sec">Save</div></div>
+          </div>
+        </div>
+        <div class="ss-tabs">
+          <div class="ss-tab"><div class="ss-tab-icon">⌂</div><div class="ss-tab-lbl">Home</div></div>
+          <div class="ss-tab"><div class="ss-tab-icon">⊞</div><div class="ss-tab-lbl">Saved</div></div>
+          <div class="ss-tab"><div class="ss-tab-icon">⚙</div><div class="ss-tab-lbl">Settings</div></div>
+        </div>
+        <div class="ss-home"><div class="ss-home-bar"></div></div>
+      </div>
+      <div class="ss-label">Step by Step — Math</div>
+    </div>
+
+    <!-- SLIDE 3: CHECK YOURSELF CHEMISTRY -->
+    <div class="screenshot-slide">
+      <div class="ss-phone">
+        <div class="ss-status"><span class="ss-time">9:41</span><div class="ss-di"></div><div class="ss-batt"><div class="ss-batt-fill"></div></div></div>
+        <div class="ss-screen">
+          <div class="ss-header"><div class="ss-back">&#8592;</div><div class="ss-subj">&#129514; Chemistry</div><div class="ss-bm">&#9873;</div></div>
+          <div class="ss-prog-row">
+            <div class="ss-pnav">&#8592;</div>
+            <div class="ss-pdots"><div class="ss-pd d"></div><div class="ss-pd d"></div><div class="ss-pd d"></div><div class="ss-pd a"></div><div class="ss-pd"></div></div>
+            <div style="width:22px"></div>
+          </div>
+          <div class="ss-grade-row"><div class="ss-grade-pill">✏ High School</div></div>
+          <div class="ss-body">
+            <div class="ss-card">
+              <div class="ss-card-lbl">Check Yourself</div>
+              <div class="ss-card-body" style="margin-bottom:8px">What bond forms when electrons transfer from Na to Cl in NaCl?</div>
+              <div class="sc-opt correct"><div class="sc-opt-l c">A</div><div class="sc-opt-t c">Ionic bond ✓</div></div>
+              <div class="sc-opt wrong"><div class="sc-opt-l w">B</div><div class="sc-opt-t w">Covalent bond ✗</div></div>
+              <div class="sc-opt neutral"><div class="sc-opt-l n">C</div><div class="sc-opt-t n">Metallic bond</div></div>
+              <div class="sc-opt neutral"><div class="sc-opt-l n">D</div><div class="sc-opt-t n">Hydrogen bond</div></div>
+              <div class="sc-feedback"><div style="font-size:11px;color:var(--success);flex-shrink:0">✓</div><div class="sc-fb-text"><strong>Correct!</strong> <span>Ionic bonds form when electrons are fully transferred between atoms.</span></div></div>
+            </div>
+            <div class="ss-next">See the answer &rarr;</div>
+          </div>
+        </div>
+        <div class="ss-tabs">
+          <div class="ss-tab"><div class="ss-tab-icon">⌂</div><div class="ss-tab-lbl">Home</div></div>
+          <div class="ss-tab"><div class="ss-tab-icon">⊞</div><div class="ss-tab-lbl">Saved</div></div>
+          <div class="ss-tab"><div class="ss-tab-icon">⚙</div><div class="ss-tab-lbl">Settings</div></div>
+        </div>
+        <div class="ss-home"><div class="ss-home-bar"></div></div>
+      </div>
+      <div class="ss-label">Check Yourself — Chemistry</div>
+    </div>
+
+    <!-- SLIDE 4: ESSAY MODE ENGLISH -->
+    <div class="screenshot-slide">
+      <div class="ss-phone">
+        <div class="ss-status"><span class="ss-time">9:41</span><div class="ss-di"></div><div class="ss-batt"><div class="ss-batt-fill"></div></div></div>
+        <div class="ss-screen">
+          <div class="ss-header"><div class="ss-back">&#8592;</div><div class="ss-subj">&#9998; English &mdash; Essay</div><div class="ss-bm">&#9873;</div></div>
+          <div class="ss-prog-row">
+            <div class="ss-pnav">&#8592;</div>
+            <div class="ss-pdots"><div class="ss-pd d"></div><div class="ss-pd a"></div><div class="ss-pd"></div><div class="ss-pd"></div><div class="ss-pd"></div></div>
+            <div style="width:22px"></div>
+          </div>
+          <div class="ss-grade-row"><div class="ss-grade-pill">✏ High School</div></div>
+          <div class="ss-body">
+            <div class="ss-card">
+              <div class="ss-card-lbl">Key Angles to Take</div>
+              <div class="sc-angle"><div class="sc-angle-num">1</div><div class="sc-angle-text">Macbeth's ambition shows how unchecked power corrupts moral judgment.</div></div>
+              <div class="sc-angle"><div class="sc-angle-num">2</div><div class="sc-angle-text">Lady Macbeth as architect of the downfall — reveals gender and power dynamics.</div></div>
+              <div class="sc-angle"><div class="sc-angle-num">3</div><div class="sc-angle-text">Fate vs. free will — do the witches cause tragedy or reflect inner desires?</div></div>
+              <div class="sc-hint"><div style="font-size:11px;flex-shrink:0;color:var(--purple)">ℹ</div><div class="sc-hint-text">Pick one angle and stick with it. A focused essay beats a scattered one every time.</div></div>
+            </div>
+            <div class="ss-next">Got it &rarr; Next</div>
+            <div class="ss-sec-row"><div class="ss-sec">Explain simpler</div><div class="ss-sec">Save</div></div>
+          </div>
+        </div>
+        <div class="ss-tabs">
+          <div class="ss-tab"><div class="ss-tab-icon">⌂</div><div class="ss-tab-lbl">Home</div></div>
+          <div class="ss-tab"><div class="ss-tab-icon">⊞</div><div class="ss-tab-lbl">Saved</div></div>
+          <div class="ss-tab"><div class="ss-tab-icon">⚙</div><div class="ss-tab-lbl">Settings</div></div>
+        </div>
+        <div class="ss-home"><div class="ss-home-bar"></div></div>
+      </div>
+      <div class="ss-label">Essay Mode — English</div>
+    </div>
+
+    <!-- SLIDE 5: PRACTICE MODE -->
+    <div class="screenshot-slide">
+      <div class="ss-phone">
+        <div class="ss-status"><span class="ss-time">9:41</span><div class="ss-di"></div><div class="ss-batt"><div class="ss-batt-fill"></div></div></div>
+        <div class="ss-screen">
+          <div class="sc-pheader">
+            <div class="sc-pback">&#8592;</div>
+            <div class="sc-pcenter"><div class="sc-ptitle">Practice</div><div class="sc-psub">3 of 7</div></div>
+            <div style="width:24px"></div>
+          </div>
+          <div class="sc-pbar"><div class="sc-pbar-fill"></div></div>
+          <div class="sc-pbody">
+            <div class="sc-pbadge"><span style="font-size:9px;color:var(--purple)">✏</span><div class="sc-pbadge-text">New problem — same concept &nbsp;·&nbsp; 📐 Math</div></div>
+            <div class="sc-pcard">
+              <div class="sc-pcard-lbl">Solve This</div>
+              <div class="sc-pcard-q">If 4y − 8 = 20, what is the value of y?</div>
+              <div class="sc-pcard-concept">Concept: Solving linear equations</div>
+            </div>
+            <div class="sc-psol">
+              <div class="sc-psol-lbl">Solution</div>
+              <div class="sc-psol-step"><div class="sc-psol-num">1</div><div class="sc-psol-text">Add 8 to both sides: 4y = 28</div></div>
+              <div class="sc-psol-step"><div class="sc-psol-num">2</div><div class="sc-psol-text">Divide both sides by 4: y = 7</div></div>
+              <div class="sc-pans"><div class="sc-pans-lbl">Answer:</div><div class="sc-pans-val">y = 7</div></div>
+            </div>
+            <div style="font-size:10px;color:var(--text-faint);text-align:center">How did you do?</div>
+            <div class="sc-pbtns">
+              <div class="sc-pgot">&#10003; Got it</div>
+              <div class="sc-pstill">&#8635; Still learning</div>
+            </div>
+          </div>
+        </div>
+        <div class="ss-tabs">
+          <div class="ss-tab"><div class="ss-tab-icon">⌂</div><div class="ss-tab-lbl">Home</div></div>
+          <div class="ss-tab"><div class="ss-tab-icon on">⊞</div><div class="ss-tab-lbl on">Saved</div></div>
+          <div class="ss-tab"><div class="ss-tab-icon">⚙</div><div class="ss-tab-lbl">Settings</div></div>
+        </div>
+        <div class="ss-home"><div class="ss-home-bar"></div></div>
+      </div>
+      <div class="ss-label">Practice Mode — Pro</div>
+    </div>
+
+  </div>
+
+  <!-- DOT NAVIGATION -->
+  <div class="ss-dots-row" id="ssDots">
+    <div class="ss-nav-dot active" onclick="scrollTo(0)"></div>
+    <div class="ss-nav-dot" onclick="scrollTo(1)"></div>
+    <div class="ss-nav-dot" onclick="scrollTo(2)"></div>
+    <div class="ss-nav-dot" onclick="scrollTo(3)"></div>
+    <div class="ss-nav-dot" onclick="scrollTo(4)"></div>
   </div>
 </section>
 
@@ -453,36 +728,12 @@ footer{background:var(--darkest);padding:28px 20px;border-top:0.5px solid var(--
   <h2 class="sec-h2">Built for students who actually want to learn</h2>
   <p class="sec-sub">Not just to finish homework.</p>
   <div class="feat-grid">
-    <div class="fc">
-      <div class="fc-icon">&#9776;</div>
-      <div class="fc-t">5-card explanation flow</div>
-      <p class="fc-d">What it&rsquo;s asking, what you need to know, step by step, check yourself, then the answer.</p>
-    </div>
-    <div class="fc">
-      <div class="fc-icon">&#127979;</div>
-      <div class="fc-t">Grade-calibrated</div>
-      <p class="fc-d">Auto-detects your grade. Elementary to college. Change it with one tap anytime.</p>
-    </div>
-    <div class="fc">
-      <div class="fc-icon">&#9998;</div>
-      <div class="fc-t">Essay mode</div>
-      <p class="fc-d">Key angles, structure, opening sentences. Teaches you to write it yourself &mdash; not for you.</p>
-    </div>
-    <div class="fc">
-      <div class="fc-icon">&#129504;</div>
-      <div class="fc-t">Practice Mode</div>
-      <p class="fc-d">New problems for math. Flashcards for everything else. Proven spaced repetition.</p>
-    </div>
-    <div class="fc">
-      <div class="fc-icon">&#127760;</div>
-      <div class="fc-t">12 languages</div>
-      <p class="fc-d">Get explained in the language you think in. Not just the language it&rsquo;s written in.</p>
-    </div>
-    <div class="fc">
-      <div class="fc-icon">&#128161;</div>
-      <div class="fc-t">Simplify mode</div>
-      <p class="fc-d">Still confused? Tap &ldquo;Explain simpler&rdquo; for an even easier breakdown &mdash; up to two levels.</p>
-    </div>
+    <div class="fc"><div class="fc-icon">&#9776;</div><div class="fc-t">5-card explanation flow</div><p class="fc-d">What it&rsquo;s asking, what you need to know, step by step, check yourself, then the answer.</p></div>
+    <div class="fc"><div class="fc-icon">&#127979;</div><div class="fc-t">Grade-calibrated</div><p class="fc-d">Auto-detects your grade. Elementary to college. Change it with one tap anytime.</p></div>
+    <div class="fc"><div class="fc-icon">&#9998;</div><div class="fc-t">Essay mode</div><p class="fc-d">Key angles, structure, opening sentences. Teaches you to write it yourself.</p></div>
+    <div class="fc"><div class="fc-icon">&#129504;</div><div class="fc-t">Practice Mode</div><p class="fc-d">New problems for math. Flashcards for everything else. Proven spaced repetition.</p></div>
+    <div class="fc"><div class="fc-icon">&#127760;</div><div class="fc-t">12 languages</div><p class="fc-d">Get explained in the language you think in. Not just the language it&rsquo;s written in.</p></div>
+    <div class="fc"><div class="fc-icon">&#128161;</div><div class="fc-t">Simplify mode</div><p class="fc-d">Still confused? Tap &ldquo;Explain simpler&rdquo; for an even easier breakdown &mdash; up to two levels.</p></div>
   </div>
 </section>
 
@@ -552,21 +803,9 @@ footer{background:var(--darkest);padding:28px 20px;border-top:0.5px solid var(--
   <h2 class="sec-h2">Real students. Real results.</h2>
   <p class="sec-sub">From students across Southeast Asia and beyond.</p>
   <div class="reviews-grid">
-    <div class="rv">
-      <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
-      <p class="rv-text">&ldquo;Finally an app that actually teaches me. Not just gives me the answer. My grades went up in two weeks.&rdquo;</p>
-      <div class="rv-author">Maria S. &mdash; Grade 10, Philippines</div>
-    </div>
-    <div class="rv">
-      <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
-      <p class="rv-text">&ldquo;The essay mode is incredible. I had no idea how to structure my arguments. Now I actually do.&rdquo;</p>
-      <div class="rv-author">Rafi A. &mdash; Grade 11, Indonesia</div>
-    </div>
-    <div class="rv">
-      <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
-      <p class="rv-text">&ldquo;Getting it explained in Tagalog changes everything. I understand so much better in my own language.&rdquo;</p>
-      <div class="rv-author">Kyle M. &mdash; College, Philippines</div>
-    </div>
+    <div class="rv"><div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div><p class="rv-text">&ldquo;Finally an app that actually teaches me. Not just gives me the answer. My grades went up in two weeks.&rdquo;</p><div class="rv-author">Maria S. &mdash; Grade 10, Philippines</div></div>
+    <div class="rv"><div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div><p class="rv-text">&ldquo;The essay mode is incredible. I had no idea how to structure my arguments. Now I actually do.&rdquo;</p><div class="rv-author">Rafi A. &mdash; Grade 11, Indonesia</div></div>
+    <div class="rv"><div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div><p class="rv-text">&ldquo;Getting it explained in Tagalog changes everything. I understand so much better in my own language.&rdquo;</p><div class="rv-author">Kyle M. &mdash; College, Philippines</div></div>
   </div>
 </section>
 
@@ -628,6 +867,34 @@ footer{background:var(--darkest);padding:28px 20px;border-top:0.5px solid var(--
     <div class="f-copy">&copy; 2026 Britten Labs</div>
   </div>
 </footer>
+
+<script>
+// Dot navigation for screenshot scroll
+const scroll = document.getElementById('ssScroll');
+const dots = document.querySelectorAll('.ss-nav-dot');
+const slides = document.querySelectorAll('.screenshot-slide');
+
+function scrollTo(i) {
+  const slide = slides[i];
+  if (!slide) return;
+  const scrollLeft = slide.offsetLeft - scroll.offsetLeft - (scroll.offsetWidth - slide.offsetWidth) / 2;
+  scroll.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+}
+
+scroll.addEventListener('scroll', () => {
+  const center = scroll.scrollLeft + scroll.offsetWidth / 2;
+  let closest = 0;
+  let minDist = Infinity;
+  slides.forEach((s, i) => {
+    const slideCenter = s.offsetLeft - scroll.offsetLeft + s.offsetWidth / 2;
+    const dist = Math.abs(center - slideCenter);
+    if (dist < minDist) { minDist = dist; closest = i; }
+  });
+  dots.forEach((d, i) => {
+    d.classList.toggle('active', i === closest);
+  });
+});
+</script>
 
 </body>
 </html>
